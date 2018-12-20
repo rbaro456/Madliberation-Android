@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MadLiberation</string>
+    <string name="artist_image">ArtistImage</string>
+    <string name="artist_name">ArtistName</string>
+    <string name="artist_bio">ArtistBio</string>
+    <string name="artists">Artists</string>
+    <string name="schedule">Schedule</string>
+</resources>
