@@ -34,11 +34,17 @@ public class Artists extends AppCompatActivity {
 
         final String[] artists = getArtists();
 
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, artists);
+        //ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, artists);
 
         ListView artistsList = findViewById(R.id.artists);
 
+        ArtistsListAdapter adapter = new ArtistsListAdapter(this, artists);
         artistsList.setAdapter(adapter);
+
+
+
+
+        //artistsList.setAdapter(adapter);
 
 
         artistsList.setOnItemClickListener(

@@ -24,5 +24,17 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        Button scheduleButton = findViewById(R.id.schedule_button);
+
+        scheduleButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(getBaseContext(), Schedule.class));
+
+            }
+        });
     }
 }
