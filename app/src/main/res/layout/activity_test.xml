@@ -26,9 +26,9 @@
         android:layout_height="wrap_content"
         android:background="@color/ToolBarBlack"
         app:tabGravity="fill"
-        app:tabIndicatorColor="#d61515"
+        app:tabIndicatorColor="@color/MadlibRed"
         app:tabMode="fixed"
-        app:tabTextColor="#d61515" />
+        app:tabTextColor="@color/MadlibRed" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
