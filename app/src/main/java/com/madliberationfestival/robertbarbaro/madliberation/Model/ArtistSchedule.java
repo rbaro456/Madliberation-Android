@@ -15,11 +15,14 @@ public class ArtistSchedule implements Comparable<ArtistSchedule>{
 
     private String endTime;
 
-    public ArtistSchedule(String artistName, String stage, String startTime, String endTime) {
+    private int day;  // 1 for day one and 2 for day two
+
+    public ArtistSchedule(String artistName, String stage, String startTime, String endTime, int day) {
         this.artistName = artistName;
         this.stage = stage;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.day = day;
     }
 
 
@@ -38,6 +41,12 @@ public class ArtistSchedule implements Comparable<ArtistSchedule>{
     public String getEndTime() {
         return endTime;
     }
+
+    public int getDay() {
+        return day;
+    }
+
+
 
 
     public int compareTo(ArtistSchedule artist1) {

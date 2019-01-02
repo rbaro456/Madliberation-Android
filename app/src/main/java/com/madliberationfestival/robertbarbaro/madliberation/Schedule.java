@@ -1,10 +1,12 @@
 package com.madliberationfestival.robertbarbaro.madliberation;
 
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.ListView;
+import android.widget.Toast;
 
 
 import com.madliberationfestival.robertbarbaro.madliberation.Model.ArtistSchedule;
@@ -37,40 +39,53 @@ public class Schedule extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
-        schedule = readSchedule();  // reads and stores schedule data from csv
+       // schedule = readSchedule();  // reads and stores schedule data from csv
 
+        schedule = new ArrayList<>();
 
-        Collections.sort(schedule);  // sort schedule by time; uses comparable in ArtistSchedule class
+        Cursor cursor = MainActivity.myDbHelper.meow();
+
+        if (cursor.moveToFirst()){
+            do{
+                String artist = cursor.getString(cursor.getColumnIndex("artist"));
+                String stage = cursor.getString(cursor.getColumnIndex("stage"));
+                String start = cursor.getString(cursor.getColumnIndex("start"));
+                String end = cursor.getString(cursor.getColumnIndex("end"));
+                int day = cursor.getInt(cursor.getColumnIndex("day"));
+
+                ArtistSchedule artistSchedule = new ArtistSchedule(artist, stage, start, end, day);
+                schedule.add(artistSchedule);
+
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+
+        schedule = sortAMandPM(schedule);
+
+        ArrayList<Object> artistScheduleStartTime = new ArrayList<>(); // Stores the artist schedule object
+                                                                // and start time so the view can properly be
+                                                                // created
 
         String currTime = schedule.get(0).getStartTime();
-        ArrayList<Object> meow = new ArrayList<>();
+        artistScheduleStartTime.add(currTime);  // adds first start time
 
         int i = 0;
 
-        while(i < schedule.size()){
-
+        while(i < schedule.size()){  // iterates through schedule placing start time then
+                                    // placing artists under their respective start times
             ArtistSchedule a = schedule.get(i);
 
             if(!a.getStartTime().equals(currTime)) {
-                meow.add(a.getStartTime());
+                artistScheduleStartTime.add(a.getStartTime());
                 currTime = a.getStartTime();
             } else {
 
-                meow.add(a);
+                artistScheduleStartTime.add(a);
                 i++;
             }
         }
 
-
-
-
-
-        String[] artists = {"Public Warfare", "Reebith", "Meelday", "Vomit Cord", "Nera"};  // FOR TESTING!!
-
-
-      //  ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, artists);
-
-        ScheduleListAdapter adapter = new ScheduleListAdapter(this, meow);
+        ScheduleListAdapter adapter = new ScheduleListAdapter(this, artistScheduleStartTime);
 
         ListView artistsList = findViewById(R.id.schedule);
         artistsList.setAdapter(adapter);
@@ -92,16 +107,20 @@ public class Schedule extends AppCompatActivity {
 
         // Handling exceptions
         try {
+
+            br.readLine(); // Used to omit first line of CSV
+                            // since it only contains headers
+
             // If buffer is not empty
             while ((line = br.readLine()) != null) {
                 // use comma as separator columns of CSV
                 String[] cols = line.split(",");
 
 
-                ArtistSchedule artistSchedule = new ArtistSchedule(cols[0], cols[1],
-                        cols[2], cols[3]);
+               // ArtistSchedule artistSchedule = new ArtistSchedule(cols[0], cols[1],
+               //         cols[2], cols[3]);
 
-                artistSchedules.add(artistSchedule);
+             //   artistSchedules.add(artistSchedule);
 
             }
         } catch (IOException e) {
@@ -109,11 +128,44 @@ public class Schedule extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        artistSchedules = sortAMandPM(artistSchedules);
+
         return artistSchedules;
 
     }
 
+    // This function sorts artists that start in the AM and PM separately so the AM artists can
+    // be placed after the PM artists. This is done because each day of the festival rolls into the
+    // next day
+    private List<ArtistSchedule> sortAMandPM(List<ArtistSchedule> schedule) {
 
+        List<ArtistSchedule>  amArtists = new ArrayList<>();
+        List<ArtistSchedule>  pmArtists = new ArrayList<>();
+
+
+        for(ArtistSchedule a : schedule) {  // go through each artist and separate them by AM and PM
+
+            String getAMorPM = a.getStartTime().split(" ")[1];
+
+            if(getAMorPM.equals("AM")) {
+
+                amArtists.add(a);
+
+            } else {
+
+                pmArtists.add(a);
+            }
+
+        }
+
+        Collections.sort(amArtists);  // sorts AM artists by start time, using comparable in ArtistSchedule class
+        Collections.sort(pmArtists);  // sorts PM artists by start time, using comparable in ArtistSchedule class
+
+        pmArtists.addAll(amArtists);  // Places sorted AM artists after sorted PM artist
+
+
+        return pmArtists;
+    }
 
 
 }
