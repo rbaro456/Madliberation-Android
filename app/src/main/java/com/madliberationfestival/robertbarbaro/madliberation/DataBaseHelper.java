@@ -147,9 +147,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public Cursor meow() {
+    public Cursor meow(int day) {
 
-        return myDataBase.rawQuery("Select * from artist_schedule where day = 1;",null);
+        String strDay = Integer.toString(day);
+
+        return myDataBase.rawQuery("Select * from artist_schedule where day = "+ day ,null);
     }
 
     // Add your public helper methods to access and get content from the database.

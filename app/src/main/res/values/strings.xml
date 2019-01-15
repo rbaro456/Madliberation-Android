@@ -5,4 +5,8 @@
     <string name="artist_bio">ArtistBio</string>
     <string name="artists">Artists</string>
     <string name="schedule">Schedule</string>
+    <string-array name="days">
+        <item>Friday</item>
+        <item>Saturday</item>
+    </string-array>
 </resources>

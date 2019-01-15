@@ -3,13 +3,18 @@ package com.madliberationfestival.robertbarbaro.madliberation;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,7 +51,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        Cursor cursor = myDbHelper.meow();
+        //  TESTING FOR CALLING FROM DATABASE!!
+        Cursor cursor = myDbHelper.meow(1);
 
         if (cursor.moveToFirst()){
             do{
@@ -58,7 +64,22 @@ public class MainActivity extends AppCompatActivity {
         cursor.close();
 
 
-       // db.getInstance(getBaseContext());
+        // FOR TESTING STORING IMAGES.. STORE IMAGES BY NAME
+        try {
+           InputStream is = getAssets().open("moor.jpg");
+
+            Bitmap bm =  BitmapFactory.decodeStream(is);
+
+            ImageView imageView =findViewById(R.id.imageTest);
+            imageView.setImageBitmap(bm);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        // db.getInstance(getBaseContext());
 
         Button artistsButton = findViewById(R.id.artists_button);
 

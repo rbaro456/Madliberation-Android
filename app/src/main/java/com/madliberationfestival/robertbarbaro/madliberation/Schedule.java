@@ -5,7 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 
@@ -21,7 +25,7 @@ import java.util.Collections;
 import java.util.List;
 
 
-public class Schedule extends AppCompatActivity {
+public class Schedule extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     List<ArtistSchedule> schedule;  // Array of each artist's scheduled set time
 
@@ -34,16 +38,34 @@ public class Schedule extends AppCompatActivity {
 
         setTitle("Schedule");
 
-        Toolbar toolbar = findViewById(R.id.app_bar);
-        toolbar.setTitleTextColor(0xFFFFFFFF);
+        //Toolbar toolbar = findViewById(R.id.app_bar);
+       // toolbar.setTitleTextColor(0xFFFFFFFF);
 
-        setSupportActionBar(toolbar);
+       // setSupportActionBar(toolbar);
+
+        Spinner daySpinner = findViewById(R.id.planets_spinner);
+        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this,
+                R.array.days, android.R.layout.simple_spinner_item);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        daySpinner.setAdapter(spinnerAdapter);
+        daySpinner.setOnItemSelectedListener(this);
+
+
+
+
 
        // schedule = readSchedule();  // reads and stores schedule data from csv
 
+       // setSchedule(1);
+
+
+
+    }
+
+    private void setSchedule(int daySchedule) {
         schedule = new ArrayList<>();
 
-        Cursor cursor = MainActivity.myDbHelper.meow();
+        Cursor cursor = MainActivity.myDbHelper.meow(daySchedule);
 
         if (cursor.moveToFirst()){
             do{
@@ -63,8 +85,8 @@ public class Schedule extends AppCompatActivity {
         schedule = sortAMandPM(schedule);
 
         ArrayList<Object> artistScheduleStartTime = new ArrayList<>(); // Stores the artist schedule object
-                                                                // and start time so the view can properly be
-                                                                // created
+        // and start time so the view can properly be
+        // created
 
         String currTime = schedule.get(0).getStartTime();
         artistScheduleStartTime.add(currTime);  // adds first start time
@@ -72,7 +94,7 @@ public class Schedule extends AppCompatActivity {
         int i = 0;
 
         while(i < schedule.size()){  // iterates through schedule placing start time then
-                                    // placing artists under their respective start times
+            // placing artists under their respective start times
             ArtistSchedule a = schedule.get(i);
 
             if(!a.getStartTime().equals(currTime)) {
@@ -89,7 +111,6 @@ public class Schedule extends AppCompatActivity {
 
         ListView artistsList = findViewById(R.id.schedule);
         artistsList.setAdapter(adapter);
-
     }
 
     private List<ArtistSchedule> readSchedule() {
@@ -168,4 +189,20 @@ public class Schedule extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+        if (position == 0) {
+
+            setSchedule(1);
+        } else {
+            setSchedule(2);
+        }
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
 }
