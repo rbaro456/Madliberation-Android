@@ -1,7 +1,6 @@
 package com.madliberationfestival.robertbarbaro.madliberation;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.SQLException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,15 +9,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import java.io.File;
+import com.madliberationfestival.robertbarbaro.madliberation.ArtistsPage.ArtistsActivity;
+import com.madliberationfestival.robertbarbaro.madliberation.Schedule.Schedule;
+
 import java.io.IOException;
 import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static DataBaseHelper myDbHelper;
+    private DataBaseHelper db;
 
 
     @Override
@@ -28,11 +28,11 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        myDbHelper = new DataBaseHelper(this);
+        db = new DataBaseHelper(this);
 
         try {
 
-            myDbHelper.createDataBase();
+            db.createDataBase();
 
         } catch (IOException ioe) {
 
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
         try {
 
-            myDbHelper.openDataBase();
+            db.openDataBase();
 
         }catch(SQLException sqle){
 
@@ -50,18 +50,6 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-
-        //  TESTING FOR CALLING FROM DATABASE!!
-        Cursor cursor = myDbHelper.meow(1);
-
-        if (cursor.moveToFirst()){
-            do{
-                String data = cursor.getString(cursor.getColumnIndex("artist"));
-                Toast.makeText(this, data ,
-                        Toast.LENGTH_LONG).show();
-            }while(cursor.moveToNext());
-        }
-        cursor.close();
 
 
         // FOR TESTING STORING IMAGES.. STORE IMAGES BY NAME

@@ -7,10 +7,14 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.madliberationfestival.robertbarbaro.madliberation.Model.ArtistSchedule;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
@@ -147,11 +151,42 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public Cursor meow(int day) {
+    // Returns schedule data by day
+    /*
+    public Cursor getSchedule(int day) {
 
         String strDay = Integer.toString(day);
 
         return myDataBase.rawQuery("Select * from artist_schedule where day = "+ day ,null);
+    }
+*/
+    // Returns schedule data by day
+    public List<ArtistSchedule> getScheduleByDay(int dayInput) {
+
+        openDataBase();
+
+        Cursor cursor = myDataBase.rawQuery("Select * from artist_schedule where day = "+ dayInput ,null);
+
+        List<ArtistSchedule> schedule = new ArrayList<>();
+
+        if (cursor.moveToFirst()){
+            do{
+                String artist = cursor.getString(cursor.getColumnIndex("artist"));
+                String stage = cursor.getString(cursor.getColumnIndex("stage"));
+                String start = cursor.getString(cursor.getColumnIndex("start"));
+                String end = cursor.getString(cursor.getColumnIndex("end"));
+                int day = cursor.getInt(cursor.getColumnIndex("day"));
+
+                ArtistSchedule artistSchedule = new ArtistSchedule(artist, stage, start, end, day);
+                schedule.add(artistSchedule);
+
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+
+        close();
+
+        return schedule;
     }
 
     // Add your public helper methods to access and get content from the database.

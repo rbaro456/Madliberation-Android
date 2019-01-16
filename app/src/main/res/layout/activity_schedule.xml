@@ -10,7 +10,7 @@
         android:background="@color/MadlibRed">
 
         <Spinner
-            android:id="@+id/planets_spinner"
+            android:id="@+id/day_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />

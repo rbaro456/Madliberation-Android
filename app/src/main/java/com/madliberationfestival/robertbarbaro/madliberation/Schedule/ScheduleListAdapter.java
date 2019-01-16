@@ -1,4 +1,4 @@
-package com.madliberationfestival.robertbarbaro.madliberation;
+package com.madliberationfestival.robertbarbaro.madliberation.Schedule;
 
 import android.app.Activity;
 import android.view.View;
@@ -7,6 +7,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.madliberationfestival.robertbarbaro.madliberation.Model.ArtistSchedule;
+import com.madliberationfestival.robertbarbaro.madliberation.R;
 
 import java.util.ArrayList;
 

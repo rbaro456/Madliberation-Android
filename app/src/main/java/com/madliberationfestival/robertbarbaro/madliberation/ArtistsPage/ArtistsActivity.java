@@ -1,4 +1,4 @@
-package com.madliberationfestival.robertbarbaro.madliberation;
+package com.madliberationfestival.robertbarbaro.madliberation.ArtistsPage;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,12 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.madliberationfestival.robertbarbaro.madliberation.ArtistInfoPage.ArtistInfo;
+import com.madliberationfestival.robertbarbaro.madliberation.R;
 
 import java.io.BufferedReader;
 import java.io.IOException;

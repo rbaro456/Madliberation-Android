@@ -1,62 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/artist_image"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ArtistInfoPage.ArtistInfo">
+    android:orientation="vertical"
+    android:paddingTop="0dp">
 
-    <include
-        android:id="@+id/app_bar"
-        layout="@layout/app_bar"></include>
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbarid"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/ToolBarBlack"
+        android:gravity="top">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/moor" />
+    </android.support.design.widget.AppBarLayout>
 
 
-    <ImageView
-        android:id="@+id/artists_image"
-        android:layout_width="396dp"
-        android:layout_height="150dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="364dp"
-        android:contentDescription="@string/artist_image"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_layout_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/ToolBarBlack"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="@color/MadlibRed"
+        app:tabMode="fixed"
+        app:tabTextColor="@color/MadlibRed" />
 
-    <TextView
-        android:id="@+id/artist_name"
-        android:layout_width="312dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="296dp"
-        android:gravity="center"
-        android:text="@string/artist_name"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent" />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white" />
 
-    <TextView
-        android:id="@+id/artist_bio"
-        android:layout_width="354dp"
-        android:layout_height="103dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="180dp"
-        android:text="@string/artist_bio"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.571"
-        app:layout_constraintStart_toStartOf="parent" />
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

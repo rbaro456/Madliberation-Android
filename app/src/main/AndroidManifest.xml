@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".ArtistsActivity" />
+        <activity android:name=".ArtistsPage.ArtistsActivity" />
         <activity android:name=".ArtistInfoPage.ArtistInfo" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -18,7 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Schedule"></activity>
+        <activity android:name=".Schedule.Schedule"></activity>
     </application>
 
 </manifest>

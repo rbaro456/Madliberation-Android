@@ -1,19 +1,17 @@
-package com.madliberationfestival.robertbarbaro.madliberation;
+package com.madliberationfestival.robertbarbaro.madliberation.Schedule;
 
-import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 
+import com.madliberationfestival.robertbarbaro.madliberation.DataBaseHelper;
 import com.madliberationfestival.robertbarbaro.madliberation.Model.ArtistSchedule;
+import com.madliberationfestival.robertbarbaro.madliberation.R;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -27,9 +25,7 @@ import java.util.List;
 
 public class Schedule extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    List<ArtistSchedule> schedule;  // Array of each artist's scheduled set time
-
-
+    private List<ArtistSchedule> schedule;  // Array of each artist's scheduled set time
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,46 +39,37 @@ public class Schedule extends AppCompatActivity implements AdapterView.OnItemSel
 
        // setSupportActionBar(toolbar);
 
-        Spinner daySpinner = findViewById(R.id.planets_spinner);
+        // Creates spinner to choose which day to display schedule for
+        Spinner daySpinner = findViewById(R.id.day_spinner);
         ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this,
                 R.array.days, android.R.layout.simple_spinner_item);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         daySpinner.setAdapter(spinnerAdapter);
         daySpinner.setOnItemSelectedListener(this);
 
-
-
-
-
-       // schedule = readSchedule();  // reads and stores schedule data from csv
-
-       // setSchedule(1);
-
-
-
     }
 
-    private void setSchedule(int daySchedule) {
-        schedule = new ArrayList<>();
+    // Sets the schedule Adapter depending on the day that was selected
+    // 1 for day one (Friday) and 2 for day two (Saturday)
+    private void setScheduleAdapter(int daySchedule) {
 
-        Cursor cursor = MainActivity.myDbHelper.meow(daySchedule);
+        DataBaseHelper db = new DataBaseHelper(this);  // create database instance
 
-        if (cursor.moveToFirst()){
-            do{
-                String artist = cursor.getString(cursor.getColumnIndex("artist"));
-                String stage = cursor.getString(cursor.getColumnIndex("stage"));
-                String start = cursor.getString(cursor.getColumnIndex("start"));
-                String end = cursor.getString(cursor.getColumnIndex("end"));
-                int day = cursor.getInt(cursor.getColumnIndex("day"));
+        schedule = db.getScheduleByDay(daySchedule);  // get schedule by day; 1 for day one and 2 for day two
 
-                ArtistSchedule artistSchedule = new ArtistSchedule(artist, stage, start, end, day);
-                schedule.add(artistSchedule);
+        schedule = sortAMandPM(schedule);  // sorts the schedule so the PM artists come before the AM artists
 
-            }while(cursor.moveToNext());
-        }
-        cursor.close();
+        ArrayList<Object> artistSetTimeSchedule = createArtistTimeSchedule(schedule);  // creates schedule with
+                                                                                        // respective start time headers
+        //Set the adapter and places it in the list view
+        ScheduleListAdapter adapter = new ScheduleListAdapter(this, artistSetTimeSchedule);
+        ListView artistsList = findViewById(R.id.schedule);
+        artistsList.setAdapter(adapter);
+    }
 
-        schedule = sortAMandPM(schedule);
+
+    // Creates an array that contains the set start times and artists in the order of their respective start times
+    private ArrayList<Object> createArtistTimeSchedule(List<ArtistSchedule> schedule) {
 
         ArrayList<Object> artistScheduleStartTime = new ArrayList<>(); // Stores the artist schedule object
         // and start time so the view can properly be
@@ -107,51 +94,7 @@ public class Schedule extends AppCompatActivity implements AdapterView.OnItemSel
             }
         }
 
-        ScheduleListAdapter adapter = new ScheduleListAdapter(this, artistScheduleStartTime);
-
-        ListView artistsList = findViewById(R.id.schedule);
-        artistsList.setAdapter(adapter);
-    }
-
-    private List<ArtistSchedule> readSchedule() {
-
-        List<ArtistSchedule> artistSchedules = new ArrayList<>();
-
-        // Read the raw csv file
-        InputStream is = getResources().openRawResource(R.raw.schedule);
-
-        // Reads text from character-input stream, buffering characters for efficient reading
-        BufferedReader br = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
-
-        // Initialization
-        String line = "";
-
-        // Handling exceptions
-        try {
-
-            br.readLine(); // Used to omit first line of CSV
-                            // since it only contains headers
-
-            // If buffer is not empty
-            while ((line = br.readLine()) != null) {
-                // use comma as separator columns of CSV
-                String[] cols = line.split(",");
-
-
-               // ArtistSchedule artistSchedule = new ArtistSchedule(cols[0], cols[1],
-               //         cols[2], cols[3]);
-
-             //   artistSchedules.add(artistSchedule);
-
-            }
-        } catch (IOException e) {
-            // Prints throwable details
-            e.printStackTrace();
-        }
-
-        artistSchedules = sortAMandPM(artistSchedules);
-
-        return artistSchedules;
+        return artistScheduleStartTime;
 
     }
 
@@ -192,17 +135,61 @@ public class Schedule extends AppCompatActivity implements AdapterView.OnItemSel
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-        if (position == 0) {
+        if (position == 0) {  // If Friday is selected, display Friday schedule
 
-            setSchedule(1);
-        } else {
-            setSchedule(2);
+            setScheduleAdapter(1);
+
+        } else {  // If Saturday is selected, display Saturday schedule
+
+            setScheduleAdapter(2);
         }
 
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+    private List<ArtistSchedule> readSchedule() {
+
+        List<ArtistSchedule> artistSchedules = new ArrayList<>();
+
+        // Read the raw csv file
+        InputStream is = getResources().openRawResource(R.raw.schedule);
+
+        // Reads text from character-input stream, buffering characters for efficient reading
+        BufferedReader br = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+
+        // Initialization
+        String line = "";
+
+        // Handling exceptions
+        try {
+
+            br.readLine(); // Used to omit first line of CSV
+            // since it only contains headers
+
+            // If buffer is not empty
+            while ((line = br.readLine()) != null) {
+                // use comma as separator columns of CSV
+                String[] cols = line.split(",");
+
+
+                // ArtistSchedule artistSchedule = new ArtistSchedule(cols[0], cols[1],
+                //         cols[2], cols[3]);
+
+                //   artistSchedules.add(artistSchedule);
+
+            }
+        } catch (IOException e) {
+            // Prints throwable details
+            e.printStackTrace();
+        }
+
+        artistSchedules = sortAMandPM(artistSchedules);
+
+        return artistSchedules;
 
     }
 }

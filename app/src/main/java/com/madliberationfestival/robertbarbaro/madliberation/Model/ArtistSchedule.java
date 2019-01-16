@@ -6,7 +6,6 @@ import java.util.Locale;
 
 public class ArtistSchedule implements Comparable<ArtistSchedule>{
 
-
     private String artistName;
 
     private String stage;
@@ -45,9 +44,6 @@ public class ArtistSchedule implements Comparable<ArtistSchedule>{
     public int getDay() {
         return day;
     }
-
-
-
 
     public int compareTo(ArtistSchedule artist1) {
 
