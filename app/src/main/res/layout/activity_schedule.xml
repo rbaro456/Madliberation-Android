@@ -4,19 +4,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/MadlibRed">
-
-        <Spinner
-            android:id="@+id/day_spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-
-
-    </android.support.v7.widget.Toolbar>
+    <include layout = "@layout/schedule_bar"
+        android:id = "@+id/schedule_bar">
+    </include>
 
     <ListView
         android:id="@+id/schedule"

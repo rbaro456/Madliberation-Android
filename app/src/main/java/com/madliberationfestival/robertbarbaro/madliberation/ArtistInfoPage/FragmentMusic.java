@@ -7,12 +7,22 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.madliberationfestival.robertbarbaro.madliberation.R;
+
+import java.util.ArrayList;
 
 public class FragmentMusic extends Fragment {
 
     View view;
+    private ListView musicList;
+
+
+    ArrayList<String> platforms;
+    ArrayList<String> links;
+
     public FragmentMusic() {
 
     }
@@ -21,6 +31,27 @@ public class FragmentMusic extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.music_fragment,container,false);
+
+        platforms = new ArrayList<>();
+        links = new ArrayList<>();
+        platforms.add("Spotify");
+        platforms.add("Sound Cloud");
+        platforms.add("Youtube");
+        links.add("https://open.spotify.com/artist/4kANxfLenUobb7t5fHSrgA");
+        links.add("https://soundcloud.com/moor-goddess");
+        links.add("https://www.youtube.com/watch?v=asYtTRfkbn8");
+
+
+
+
+        musicList = view.findViewById(R.id.music_list);
+
+        MusicAdapter adapter = new MusicAdapter(getActivity() ,platforms, links);
+        musicList.setAdapter(adapter);
+       // ArrayAdapter<String> adapter =
+        //        new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, platforms);
+        //musicList.setAdapter(adapter);
+
         return view;
     }
 }

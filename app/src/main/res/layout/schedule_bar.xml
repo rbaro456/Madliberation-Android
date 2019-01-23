@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/MadlibRed">
+
+    <Spinner
+        android:id="@+id/day_spinner"
+        android:layout_width="105dp"
+        android:layout_height="30dp"
+        android:layout_gravity="end"
+        android:paddingRight="10dp"
+        android:paddingLeft="1dp"
+        android:paddingStart="1dp"
+        android:paddingEnd="10dp"
+        />
+
+
+</android.support.v7.widget.Toolbar>

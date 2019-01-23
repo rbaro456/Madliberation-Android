@@ -15,12 +15,10 @@ import java.util.ArrayList;
 public class ScheduleListAdapter extends BaseAdapter {
 
     private ArrayList<Object> artistSchedules;
-    Activity activity;
+    private Activity activity;
 
     private static final int ARTIST_VIEW = 0;
     private static final int TIME_VIEW = 1;
-
-    String currTime;
 
     public ScheduleListAdapter(Activity activity, ArrayList<Object> artistSchedules) {
 

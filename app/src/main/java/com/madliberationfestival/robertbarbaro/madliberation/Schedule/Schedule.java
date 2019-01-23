@@ -1,7 +1,9 @@
 package com.madliberationfestival.robertbarbaro.madliberation.Schedule;
 
+import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -34,18 +36,19 @@ public class Schedule extends AppCompatActivity implements AdapterView.OnItemSel
 
         setTitle("Schedule");
 
-        //Toolbar toolbar = findViewById(R.id.app_bar);
-       // toolbar.setTitleTextColor(0xFFFFFFFF);
+        Toolbar toolbar = findViewById(R.id.schedule_bar);
+        toolbar.setTitleTextColor(0xFFFFFFFF);
 
-       // setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
 
         // Creates spinner to choose which day to display schedule for
         Spinner daySpinner = findViewById(R.id.day_spinner);
         ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this,
-                R.array.days, android.R.layout.simple_spinner_item);
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                R.array.days, R.layout.spin_style);
+        spinnerAdapter.setDropDownViewResource(R.layout.spin_item);
         daySpinner.setAdapter(spinnerAdapter);
         daySpinner.setOnItemSelectedListener(this);
+        daySpinner.getBackground().setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
 
     }
 
