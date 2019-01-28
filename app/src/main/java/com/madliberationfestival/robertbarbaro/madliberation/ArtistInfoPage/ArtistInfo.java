@@ -19,6 +19,13 @@ public class ArtistInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_artist_info);
 
+        Toolbar toolbar = findViewById(R.id.app_bar);
+        toolbar.setTitleTextColor(0xFFFFFFFF);
+
+        setSupportActionBar(toolbar);
+
+        setTitle("Moor Mother");
+
         tabLayout = findViewById(R.id.tab_layout_id);
         viewPager = findViewById(R.id.viewpager);
 
@@ -36,8 +43,8 @@ public class ArtistInfo extends AppCompatActivity {
         tabby = tabLayout.getTabAt(1);
         tabby.setText("Music");
 
-        Toolbar toolbar = findViewById(R.id.app_bar);
-        setSupportActionBar(toolbar);
+       // Toolbar toolbar = findViewById(R.id.app_bar);
+       // setSupportActionBar(toolbar);
 
         String artistName = getIntent().getStringExtra("ARTIST_NAME");
 

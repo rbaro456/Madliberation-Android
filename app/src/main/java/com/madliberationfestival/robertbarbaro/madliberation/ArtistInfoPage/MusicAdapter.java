@@ -4,7 +4,11 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.text.Html;
+import android.text.Spannable;
+import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
+import android.text.style.URLSpan;
+import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -50,8 +54,20 @@ public class MusicAdapter extends BaseAdapter {
         String plat = platforms.get(position);
         convertView = activity.getLayoutInflater().inflate(R.layout.music_item, null);
         TextView textView = convertView.findViewById(R.id.music_text);
-        textView.setText( Html.fromHtml("<a href=\""+links.get(position)+"\">"+plat+"</a>"));
-        textView.setMovementMethod(LinkMovementMethod.getInstance());
+
+        String link = "<a href=\""+links.get(position)+"\">"+plat+"</a>";
+
+        Spannable s = (Spannable) Html.fromHtml(link);  // Removes underline from links
+        for (URLSpan u: s.getSpans(0, s.length(), URLSpan.class)) {
+            s.setSpan(new UnderlineSpan() {
+                public void updateDrawState(TextPaint tp) {
+                    tp.setUnderlineText(false);
+                }
+            }, s.getSpanStart(u), s.getSpanEnd(u), 0);
+        }
+
+        textView.setText(s);
+        textView.setMovementMethod(LinkMovementMethod.getInstance());  // Allows links to be clickable
 
         return convertView;
     }
