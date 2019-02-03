@@ -63,9 +63,18 @@ public class ScheduleListAdapter extends BaseAdapter {
 
         if(getItemViewType(position) == 0) {
             ArtistSchedule artistInfo = (ArtistSchedule) artistSchedules.get(position);
-            convertView = activity.getLayoutInflater().inflate(R.layout.artist_list_item, null);
+            convertView = activity.getLayoutInflater().inflate(R.layout.artist_schedule_item, null);
+
             TextView artistName = convertView.findViewById(R.id.artist_names);
             artistName.setText(artistInfo.getArtistName());
+
+            TextView stage = convertView.findViewById(R.id.stage);
+            stage.setText(artistInfo.getStage());
+
+            String timeString = artistInfo.getStartTime() + " - " + artistInfo.getEndTime();
+
+            TextView time = convertView.findViewById(R.id.times);
+            time.setText(timeString);
 
         } else {
 

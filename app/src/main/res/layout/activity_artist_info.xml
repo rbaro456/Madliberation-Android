@@ -10,18 +10,12 @@
         android:id = "@+id/app_bar">
     </include>
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbarid"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@color/ToolBarBlack"
-        android:gravity="top">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/moor" />
-    </android.support.design.widget.AppBarLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="194dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/moor" />
 
 
     <android.support.design.widget.TabLayout

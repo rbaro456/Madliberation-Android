@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MadLiberation</string>
+    <string name="app_name">Mad Liberation</string>
     <string name="artist_image">ArtistImage</string>
     <string name="artist_name">ArtistName</string>
     <string name="artist_bio">ArtistBio</string>
