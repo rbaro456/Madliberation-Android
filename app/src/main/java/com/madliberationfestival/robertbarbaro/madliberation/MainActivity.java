@@ -12,6 +12,7 @@ import android.widget.ImageView;
 
 import com.madliberationfestival.robertbarbaro.madliberation.ArtistsPage.ArtistsActivity;
 import com.madliberationfestival.robertbarbaro.madliberation.Schedule.Schedule;
+import com.madliberationfestival.robertbarbaro.madliberation.SocialPage.Social;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -91,5 +92,18 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        Button socialButton = findViewById(R.id.social_button);
+
+        socialButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(getBaseContext(), Social.class));
+
+            }
+        });
+
     }
 }
