@@ -10,11 +10,14 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.madliberationfestival.robertbarbaro.madliberation.ArtistInfoPage.ArtistInfo;
+import com.madliberationfestival.robertbarbaro.madliberation.DataBaseHelper;
+import com.madliberationfestival.robertbarbaro.madliberation.Model.Artist;
 import com.madliberationfestival.robertbarbaro.madliberation.R;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 
 public class ArtistsActivity extends AppCompatActivity {
@@ -31,22 +34,27 @@ public class ArtistsActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
-        final String[] artists = getArtists();
+       // final String[] artists = getArtists();
 
         //ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, artists);
 
-        ListView artistsList = findViewById(R.id.artists);
+        ListView artistsListView = findViewById(R.id.artists);
 
-        ArtistsListAdapter adapter = new ArtistsListAdapter(this, artists);
-        artistsList.setAdapter(adapter);
-
-
+        DataBaseHelper db = new DataBaseHelper(this);
+        final List<Artist> artistsList = db.getArtists();
 
 
-        //artistsList.setAdapter(adapter);
+
+        ArtistsListAdapter adapter = new ArtistsListAdapter(this, artistsList);
+        artistsListView.setAdapter(adapter);
 
 
-        artistsList.setOnItemClickListener(
+
+
+        //artistsListView.setAdapter(adapter);
+
+
+        artistsListView.setOnItemClickListener(
 
                 new AdapterView.OnItemClickListener() {
 
@@ -57,7 +65,7 @@ public class ArtistsActivity extends AppCompatActivity {
                                 "Position clicked " + position, Toast.LENGTH_LONG).show();
 
                         Intent intent = new Intent(getBaseContext(), ArtistInfo.class);
-                        intent.putExtra("ARTIST_NAME", artists[position]);
+                        intent.putExtra("ARTIST_NAME", artistsList.get(position).getArtistName());
                         startActivity(intent);
                     }
                 }
@@ -66,7 +74,7 @@ public class ArtistsActivity extends AppCompatActivity {
 
         );
     }
-
+/*
     public String[] getArtists() {
 
         String[] artists = new String[42];
@@ -99,6 +107,6 @@ public class ArtistsActivity extends AppCompatActivity {
 
         return artists;
     }
-
+*/
 
 }

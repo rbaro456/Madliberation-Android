@@ -1,35 +1,41 @@
 package com.madliberationfestival.robertbarbaro.madliberation.ArtistsPage;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.madliberationfestival.robertbarbaro.madliberation.Model.Artist;
 import com.madliberationfestival.robertbarbaro.madliberation.R;
 
-import java.util.ArrayList;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
 
 public class ArtistsListAdapter extends BaseAdapter {
 
-    String[] arr;
+    List<Artist> artistsList;
 
     Activity activity;
 
-    public ArtistsListAdapter(Activity activity, String[] artists) {
+    public ArtistsListAdapter(Activity activity, List<Artist> artistsList) {
 
         this.activity = activity;
-        arr = artists;
+        this.artistsList = artistsList;
     }
 
     @Override
     public int getCount() {
-        return arr.length;
+        return artistsList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return arr[position];
+        return artistsList.get(position);
     }
 
     @Override
@@ -44,7 +50,24 @@ public class ArtistsListAdapter extends BaseAdapter {
 
         TextView artistName = convertView.findViewById(R.id.artist_names);
 
-        artistName.setText(arr[position]);
+       // ImageView artistImage = convertView.findViewById(R.id.artists_image);
+
+        try {
+
+            // SHOULD I USE CONTEXT INSTEAD OF ACTIVITY?????????
+            InputStream is = activity.getAssets().open(artistsList.get(position).getImage());
+
+            Bitmap bm =  BitmapFactory.decodeStream(is);
+
+            ImageView imageView = convertView.findViewById(R.id.artists_image);
+            imageView.setImageBitmap(bm);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        artistName.setText(artistsList.get(position).getArtistName());
 
         return convertView;
     }

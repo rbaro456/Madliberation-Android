@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.madliberationfestival.robertbarbaro.madliberation.Model.Artist;
 import com.madliberationfestival.robertbarbaro.madliberation.Model.ArtistSchedule;
 
 import java.io.FileOutputStream;
@@ -21,7 +22,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     //The Android's default system path of your application database.
     private static String DB_PATH = "/data/data/com.madliberationfestival.robertbarbaro.madliberation/databases/";
 
-    private static String DB_NAME = "madlib.db";
+    private static String DB_NAME = "mad_liberation.db";
 
     private SQLiteDatabase myDataBase;
 
@@ -160,24 +161,79 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return myDataBase.rawQuery("Select * from artist_schedule where day = "+ day ,null);
     }
 */
+    
+    public Artist getArtist(String artistName) {
+
+        openDataBase();
+
+        Cursor cursor = myDataBase.rawQuery(
+                "Select * from artist where name = " + "'" + artistName+ "'",null);
+
+        Artist artist = null;
+
+        if (cursor.moveToFirst()){
+            do{
+                String name = cursor.getString(cursor.getColumnIndex("name"));
+                String bio = cursor.getString(cursor.getColumnIndex("bio"));
+                String image = cursor.getString(cursor.getColumnIndex("image"));
+
+                artist = new Artist(name, bio, image);
+
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+
+        close();
+
+
+        return artist;
+
+    }
+
+    public List<Artist> getArtists() {
+
+        openDataBase();
+
+        Cursor cursor = myDataBase.rawQuery("Select * from artist",null);
+
+        List<Artist> artistsList = new ArrayList<>();
+
+        if (cursor.moveToFirst()){
+            do{
+                String name = cursor.getString(cursor.getColumnIndex("name"));
+                String bio = cursor.getString(cursor.getColumnIndex("bio"));
+                String image = cursor.getString(cursor.getColumnIndex("image"));
+
+                Artist artist = new Artist(name, bio, image);
+                artistsList.add(artist);
+
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+
+        close();
+
+        return artistsList;
+    }
+
     // Returns schedule data by day
     public List<ArtistSchedule> getScheduleByDay(int dayInput) {
 
         openDataBase();
 
-        Cursor cursor = myDataBase.rawQuery("Select * from artist_schedule where day = "+ dayInput ,null);
+        Cursor cursor = myDataBase.rawQuery("Select * from schedule where day = "+ dayInput ,null);
 
         List<ArtistSchedule> schedule = new ArrayList<>();
 
         if (cursor.moveToFirst()){
             do{
-                String artist = cursor.getString(cursor.getColumnIndex("artist"));
+                String name = cursor.getString(cursor.getColumnIndex("name"));
                 String stage = cursor.getString(cursor.getColumnIndex("stage"));
                 String start = cursor.getString(cursor.getColumnIndex("start"));
                 String end = cursor.getString(cursor.getColumnIndex("end"));
                 int day = cursor.getInt(cursor.getColumnIndex("day"));
 
-                ArtistSchedule artistSchedule = new ArtistSchedule(artist, stage, start, end, day);
+                ArtistSchedule artistSchedule = new ArtistSchedule(name, stage, start, end, day);
                 schedule.add(artistSchedule);
 
             }while(cursor.moveToNext());

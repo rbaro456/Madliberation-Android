@@ -5,6 +5,7 @@ import android.content.Context;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.TextPaint;
+import android.text.method.LinkMovementMethod;
 import android.text.style.URLSpan;
 import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
@@ -64,6 +65,8 @@ public class SocialAdapter extends BaseAdapter {
         TextView textView = convertView.findViewById(R.id.social_text);
 
         textView.setText(s);
+        textView.setMovementMethod(LinkMovementMethod.getInstance());  // Allows links to be clickable
+
 
 
         return convertView;

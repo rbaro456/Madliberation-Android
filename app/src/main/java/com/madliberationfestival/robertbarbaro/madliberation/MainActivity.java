@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // FOR TESTING STORING IMAGES.. STORE IMAGES BY NAME
+        /*
         try {
            InputStream is = getAssets().open("moor.jpg");
 
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        */
 
         // db.getInstance(getBaseContext());
 

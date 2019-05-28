@@ -12,8 +12,7 @@
         android:paddingLeft="2dp"
         android:paddingStart="2dp"
         android:layout_gravity="center"
-        android:contentDescription="@string/artist_image"
-        android:src="@drawable/moor" />
+        android:contentDescription="@string/artist_image" />
 
     <TextView
         android:id="@+id/artist_names"

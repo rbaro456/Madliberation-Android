@@ -12,10 +12,10 @@
 
 
     <ImageView
+        android:id="@+id/artist_info_image"
         android:layout_width="match_parent"
         android:layout_height="194dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/moor" />
+        android:scaleType="fitXY" />
 
 
     <android.support.design.widget.TabLayout

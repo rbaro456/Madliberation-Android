@@ -1,5 +1,7 @@
 package com.madliberationfestival.robertbarbaro.madliberation.ArtistInfoPage;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -7,7 +9,12 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 
+import com.madliberationfestival.robertbarbaro.madliberation.DataBaseHelper;
+import com.madliberationfestival.robertbarbaro.madliberation.Model.Artist;
 import com.madliberationfestival.robertbarbaro.madliberation.R;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class ArtistInfo extends AppCompatActivity {
 
@@ -24,7 +31,12 @@ public class ArtistInfo extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
-        setTitle("Moor Mother");
+        String artistName = getIntent().getStringExtra("ARTIST_NAME");
+
+        setTitle(artistName);
+
+        DataBaseHelper db = new DataBaseHelper(this);
+        Artist artist = db.getArtist(artistName);
 
         tabLayout = findViewById(R.id.tab_layout_id);
         viewPager = findViewById(R.id.viewpager);
@@ -46,25 +58,22 @@ public class ArtistInfo extends AppCompatActivity {
        // Toolbar toolbar = findViewById(R.id.app_bar);
        // setSupportActionBar(toolbar);
 
-        String artistName = getIntent().getStringExtra("ARTIST_NAME");
 
         ImageView artistImage = findViewById(R.id.artists_image);
-/*
-        try
-        {
-            // get input stream
-            InputStream ims = getAssets().open("moor.jpg");
-            // load image as Drawable
-            Drawable d = Drawable.createFromStream(ims, null);
-            // set image to ImageView
-            artistImage.setImageDrawable(d);
-            ims.close();
-        }
-        catch(Exception ex)
-        {
-            return;
-        }
 
+        try {
+            InputStream is = getAssets().open(artist.getImage());
+
+            Bitmap bm =  BitmapFactory.decodeStream(is);
+
+            ImageView imageView =findViewById(R.id.artist_info_image);
+            imageView.setImageBitmap(bm);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        /*
         TextView artistNameText = findViewById(R.id.artist_name);
 
         artistNameText.setText(artistName);
