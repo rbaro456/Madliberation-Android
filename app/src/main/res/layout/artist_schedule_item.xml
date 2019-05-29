@@ -19,6 +19,7 @@
             android:paddingStart="2dp"
             android:layout_gravity="center"
             android:contentDescription="@string/artist_image"
+            android:scaleType="fitXY"
             android:src="@drawable/moor" />
 
         <TextView

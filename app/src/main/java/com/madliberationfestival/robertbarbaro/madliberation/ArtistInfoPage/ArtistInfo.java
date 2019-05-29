@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.madliberationfestival.robertbarbaro.madliberation.DataBaseHelper;
 import com.madliberationfestival.robertbarbaro.madliberation.Model.Artist;
@@ -59,8 +60,12 @@ public class ArtistInfo extends AppCompatActivity {
        // setSupportActionBar(toolbar);
 
 
-        ImageView artistImage = findViewById(R.id.artists_image);
+        //ImageView artistImage = findViewById(R.id.artists_image);
 
+        ImageView artistImage =findViewById(R.id.artist_info_image);
+
+
+        /*
         try {
             InputStream is = getAssets().open(artist.getImage());
 
@@ -69,10 +74,17 @@ public class ArtistInfo extends AppCompatActivity {
             ImageView imageView =findViewById(R.id.artist_info_image);
             imageView.setImageBitmap(bm);
 
+            Toast.makeText(this, "The width is " + imageView.getWidth() + "\n The height is "
+                            + imageView.getHeight(),
+                    Toast.LENGTH_LONG).show();
+
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
+        */
         /*
         TextView artistNameText = findViewById(R.id.artist_name);
 
