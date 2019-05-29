@@ -1,14 +1,21 @@
 package com.madliberationfestival.robertbarbaro.madliberation.Schedule;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.madliberationfestival.robertbarbaro.madliberation.DataBaseHelper;
 import com.madliberationfestival.robertbarbaro.madliberation.Model.ArtistSchedule;
 import com.madliberationfestival.robertbarbaro.madliberation.R;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 
@@ -75,6 +82,23 @@ public class ScheduleListAdapter extends BaseAdapter {
 
             TextView time = convertView.findViewById(R.id.times);
             time.setText(timeString);
+
+            DataBaseHelper db = new DataBaseHelper(activity);
+            String artistImage = db.getArtistImage(artistInfo.getArtistName());
+
+
+            try {
+                InputStream is = activity.getAssets().open(artistImage);
+
+                Bitmap bm =  BitmapFactory.decodeStream(is);
+
+                ImageView imageView = convertView.findViewById(R.id.artists_image);
+                imageView.setImageBitmap(bm);
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
         } else {
 

@@ -1,5 +1,6 @@
 package com.madliberationfestival.robertbarbaro.madliberation.Schedule;
 
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,8 +10,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 
+import com.madliberationfestival.robertbarbaro.madliberation.ArtistInfoPage.ArtistInfo;
 import com.madliberationfestival.robertbarbaro.madliberation.DataBaseHelper;
 import com.madliberationfestival.robertbarbaro.madliberation.Model.ArtistSchedule;
 import com.madliberationfestival.robertbarbaro.madliberation.R;
@@ -48,7 +51,28 @@ public class Schedule extends AppCompatActivity implements AdapterView.OnItemSel
         spinnerAdapter.setDropDownViewResource(R.layout.spin_item);
         daySpinner.setAdapter(spinnerAdapter);
         daySpinner.setOnItemSelectedListener(this);
-        daySpinner.getBackground().setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+        daySpinner.getBackground().setColorFilter(getResources().getColor(R.color.colorPrimary),
+                PorterDuff.Mode.SRC_ATOP);
+
+        ListView scheduleListView = findViewById(R.id.schedule);
+
+        scheduleListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+                Toast.makeText(getApplication(),
+                        "Position clicked " + position, Toast.LENGTH_LONG).show();
+
+                ArtistSchedule entry = (ArtistSchedule) parent.getItemAtPosition(position);
+
+
+                Intent intent = new Intent(getBaseContext(), ArtistInfo.class);
+                intent.putExtra("ARTIST_NAME", entry.getArtistName());
+                startActivity(intent);
+            }
+        });
+
+
 
     }
 
@@ -68,6 +92,24 @@ public class Schedule extends AppCompatActivity implements AdapterView.OnItemSel
         ScheduleListAdapter adapter = new ScheduleListAdapter(this, artistSetTimeSchedule);
         ListView artistsList = findViewById(R.id.schedule);
         artistsList.setAdapter(adapter);
+        /*
+        artistsList.setOnClickListener(
+
+                new AdapterView.OnItemClickListener() {
+
+
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Toast.makeText(getApplication(),
+                                "Position clicked " + position, Toast.LENGTH_LONG).show();
+
+                        Intent intent = new Intent(getBaseContext(), ArtistInfo.class);
+                        intent.putExtra("ARTIST_NAME", schedule.get(position).getArtistName());
+                        startActivity(intent);
+                    }
+                }
+        );
+        */
     }
 
 

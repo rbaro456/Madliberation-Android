@@ -6,6 +6,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import com.madliberationfestival.robertbarbaro.madliberation.Model.Artist;
 import com.madliberationfestival.robertbarbaro.madliberation.Model.ArtistSchedule;
@@ -161,13 +162,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return myDataBase.rawQuery("Select * from artist_schedule where day = "+ day ,null);
     }
 */
-    
+
     public Artist getArtist(String artistName) {
 
         openDataBase();
 
         Cursor cursor = myDataBase.rawQuery(
-                "Select * from artist where name = " + "'" + artistName+ "'",null);
+                "Select * from artist where name = ?", new String[] {artistName});
 
         Artist artist = null;
 
@@ -188,6 +189,33 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         return artist;
 
+    }
+
+    public String getArtistImage(String artistName) {
+
+        openDataBase();
+
+        Cursor cursor = myDataBase.rawQuery(
+                "Select image from artist where name = ?",new String[] {artistName});
+
+        String image = null;
+
+        if (cursor.moveToFirst()){
+            do{
+
+                 image = cursor.getString(cursor.getColumnIndex("image"));
+
+
+
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+
+        close();
+
+
+
+        return image;
     }
 
     public List<Artist> getArtists() {
