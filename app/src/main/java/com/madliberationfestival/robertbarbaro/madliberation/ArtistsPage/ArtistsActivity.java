@@ -33,6 +33,7 @@ public class ArtistsActivity extends AppCompatActivity {
         toolbar.setTitleTextColor(0xFFFFFFFF);
 
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);  // Adds up navigation arrow to tool bar
 
        // final String[] artists = getArtists();
 

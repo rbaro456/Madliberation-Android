@@ -9,13 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".SocialPage.Social"></activity>
+        <activity android:name=".SocialPage.Social"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity"
+            ></activity>
         <activity
             android:name=".ArtistsPage.ArtistsActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".ArtistInfoPage.ArtistInfo"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
@@ -27,6 +32,7 @@
         </activity>
         <activity
             android:name=".Schedule.Schedule"
+            android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
     </application>
 

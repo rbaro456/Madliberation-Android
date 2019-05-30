@@ -43,6 +43,8 @@ public class Schedule extends AppCompatActivity implements AdapterView.OnItemSel
         toolbar.setTitleTextColor(0xFFFFFFFF);
 
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);  // Adds up navigation arrow to tool bar
+
 
         // Creates spinner to choose which day to display schedule for
         Spinner daySpinner = findViewById(R.id.day_spinner);

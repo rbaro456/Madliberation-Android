@@ -26,6 +26,8 @@ public class Social extends AppCompatActivity {
         toolbar.setTitleTextColor(0xFFFFFFFF);
 
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);  // Adds up navigation arrow to tool bar
+
 
         socialList = findViewById(R.id.social_list);
         //ArrayAdapter adapter = new ArrayAdapter<String>(this,R.layout.activity_listview,socialArr);

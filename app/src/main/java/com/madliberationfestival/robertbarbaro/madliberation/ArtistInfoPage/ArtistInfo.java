@@ -31,6 +31,8 @@ public class ArtistInfo extends AppCompatActivity {
         toolbar.setTitleTextColor(0xFFFFFFFF);
 
         setSupportActionBar(toolbar);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);  // Adds up navigation arrow to tool bar
+
 
         String artistName = getIntent().getStringExtra("ARTIST_NAME");
 
