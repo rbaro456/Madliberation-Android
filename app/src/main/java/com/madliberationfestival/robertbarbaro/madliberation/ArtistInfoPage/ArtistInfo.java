@@ -46,8 +46,18 @@ public class ArtistInfo extends AppCompatActivity {
 
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        adapter.AddFragment(new FragmentBio(), "Bio");
-        adapter.AddFragment(new FragmentMusic(), "Music");
+        Bundle bundle = new Bundle();
+        bundle.putString("ARTIST_NAME", artistName);
+
+        FragmentMusic musicFrag = new FragmentMusic();
+        musicFrag.setArguments(bundle);
+
+        FragmentBio bioFrag = new FragmentBio();
+        bioFrag.setArguments(bundle);
+
+
+        adapter.AddFragment(bioFrag, "Bio");
+        adapter.AddFragment(musicFrag, "Music");
 
         viewPager.setAdapter(adapter);
 

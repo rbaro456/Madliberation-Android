@@ -14,34 +14,41 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.madliberationfestival.robertbarbaro.madliberation.Model.ArtistMusic;
 import com.madliberationfestival.robertbarbaro.madliberation.R;
 
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MusicAdapter extends BaseAdapter {
 
     private ArrayList<String> platforms;
     private ArrayList<String> links;
+    private List<ArtistMusic> artistMusic;
 
     private Activity activity;
 
-    public MusicAdapter(Activity activity, ArrayList<String> platforms, ArrayList<String> links) {
+    public MusicAdapter(Activity activity, List<ArtistMusic> artistMusic) {
 
+        this.activity = activity;
+        this.artistMusic = artistMusic;
+        /*
         this.platforms = platforms;
         this.activity = activity;
         this.links = links;
+        */
     }
 
     @Override
     public int getCount() {
-        return platforms.size();
+        return artistMusic.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return platforms.get(position);
+        return artistMusic.get(position);
     }
 
     @Override
@@ -51,11 +58,11 @@ public class MusicAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        String plat = platforms.get(position);
+        String plat = artistMusic.get(position).getPlatform();
         convertView = activity.getLayoutInflater().inflate(R.layout.music_item, null);
         TextView textView = convertView.findViewById(R.id.music_text);
 
-        String link = "<a href=\""+links.get(position)+"\">"+plat+"</a>";
+        String link = "<a href=\""+artistMusic.get(position).getLink()+"\">"+plat+"</a>";
 
         Spannable s = (Spannable) Html.fromHtml(link);  // Removes underline from links
         for (URLSpan u: s.getSpans(0, s.length(), URLSpan.class)) {

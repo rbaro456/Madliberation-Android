@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.madliberationfestival.robertbarbaro.madliberation.DataBaseHelper;
 import com.madliberationfestival.robertbarbaro.madliberation.R;
 
 public class FragmentBio extends Fragment {
@@ -28,7 +29,16 @@ public class FragmentBio extends Fragment {
 
         view = inflater.inflate(R.layout.bio_fragment,container,false);
 
+        Bundle bundle = getArguments();
+
+        String artistName = bundle.getString("ARTIST_NAME");
+
+        DataBaseHelper db = new DataBaseHelper(getContext());
+        String artistBio = db.getArtistBio(artistName);
+
+
         bioText = view.findViewById(R.id.biotext);
+        bioText.setText(artistBio);
         bioText.setMovementMethod(new ScrollingMovementMethod());
 
         return view;

@@ -9,8 +9,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
 import com.madliberationfestival.robertbarbaro.madliberation.Model.Artist;
+import com.madliberationfestival.robertbarbaro.madliberation.Model.ArtistMusic;
 import com.madliberationfestival.robertbarbaro.madliberation.Model.ArtistSchedule;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,7 +23,13 @@ import java.util.List;
 public class DataBaseHelper extends SQLiteOpenHelper {
 
     //The Android's default system path of your application database.
-    private static String DB_PATH = "/data/data/com.madliberationfestival.robertbarbaro.madliberation/databases/";
+
+   // private static String DB_PATH = "/data/data/com.madliberationfestival.robertbarbaro.madliberation/databases/";
+
+    //private static String DB_PATH = "/data/data/com.madliberationfestival.robertbarbaro.madliberation/databases/";
+
+
+    private static File DB_PATH;
 
     private static String DB_NAME = "mad_liberation.db";
 
@@ -38,6 +46,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         super(context, DB_NAME, null, 1);
         this.myContext = context;
+        DB_PATH = myContext.getDatabasePath(DB_NAME);
     }
 
     /**
@@ -130,6 +139,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         //Open the database
         String myPath = DB_PATH + DB_NAME;
         myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
+
+        if(myDataBase == null) {
+            System.out.println("DATABASE IS NULL MOTHA FUKA lkj;asdlkjdlk;sa;lkjasdflk;lj;kasdfl;kjasl;kdf;lkasdjkf;asdjkfl;");
+        } else {
+            System.out.println("DATABASR IS FOUND kdkd;ladjfa;lfkj;lasdkjf;lasdkjf");
+        }
 
     }
 
@@ -242,6 +257,56 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         close();
 
         return artistsList;
+    }
+
+    public String getArtistBio(String artistName) {
+
+        openDataBase();
+
+        Cursor cursor = myDataBase.rawQuery("Select bio from artist where name = ?",
+                new String[] {artistName});
+
+        String bio = null;
+
+        if (cursor.moveToFirst()){
+            do{
+                 bio = cursor.getString(cursor.getColumnIndex("bio"));
+
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+
+        close();
+
+        return bio;
+    }
+
+    public List<ArtistMusic> getArtistMusic(String artistName) {
+
+        openDataBase();
+
+        Cursor cursor = myDataBase.rawQuery("Select * from music where name = ?",
+                new String[] {artistName});
+
+        List<ArtistMusic> artistMusicList = new ArrayList<>();
+
+        if (cursor.moveToFirst()){
+            do{
+                String name = cursor.getString(cursor.getColumnIndex("name"));
+                String platform = cursor.getString(cursor.getColumnIndex("platform"));
+                String link = cursor.getString(cursor.getColumnIndex("link"));
+
+
+                ArtistMusic artistMusic = new ArtistMusic(name, platform, link);
+                artistMusicList.add(artistMusic);
+
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+
+        close();
+
+        return artistMusicList;
     }
 
     // Returns schedule data by day
