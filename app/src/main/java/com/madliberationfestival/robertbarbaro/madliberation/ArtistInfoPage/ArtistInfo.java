@@ -19,60 +19,54 @@ import java.io.InputStream;
 
 public class ArtistInfo extends AppCompatActivity {
 
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_artist_info);
 
         Toolbar toolbar = findViewById(R.id.app_bar);
-        toolbar.setTitleTextColor(0xFFFFFFFF);
-
         setSupportActionBar(toolbar);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);  // Adds up navigation arrow to tool bar
 
 
-        String artistName = getIntent().getStringExtra("ARTIST_NAME");
+        String artistName = getIntent().getStringExtra("ARTIST_NAME");  // Get artist name that was clicked
 
-        setTitle(artistName);
+        setTitle(artistName);  // Set title to name of artist
 
+        // Get artist information from database
         DataBaseHelper db = new DataBaseHelper(this);
         Artist artist = db.getArtist(artistName);
 
-        tabLayout = findViewById(R.id.tab_layout_id);
-        viewPager = findViewById(R.id.viewpager);
+        TabLayout tabLayout = findViewById(R.id.tab_layout_id);
+        ViewPager viewPager = findViewById(R.id.viewpager);
 
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        Bundle bundle = new Bundle();
+        Bundle bundle = new Bundle();  // Create bundle to pass artist name to bio fragment and music fragment
         bundle.putString("ARTIST_NAME", artistName);
 
+        // Create fragment instance and pass artist name in bundle
+        // Need to pass name so the bio and music of that specific artist is displayed
         FragmentMusic musicFrag = new FragmentMusic();
         musicFrag.setArguments(bundle);
 
         FragmentBio bioFrag = new FragmentBio();
         bioFrag.setArguments(bundle);
 
-
+        // Add fragment to the adapter
         adapter.AddFragment(bioFrag, "Bio");
         adapter.AddFragment(musicFrag, "Music");
 
         viewPager.setAdapter(adapter);
-
         tabLayout.setupWithViewPager(viewPager);
 
-        TabLayout.Tab tabby = tabLayout.getTabAt(0);  // Set Tab Names
-        tabby.setText("Bio");
-        tabby = tabLayout.getTabAt(1);
-        tabby.setText("Music");
-
-       // Toolbar toolbar = findViewById(R.id.app_bar);
-       // setSupportActionBar(toolbar);
+        // Set appropriate tab titles
+        TabLayout.Tab tab = tabLayout.getTabAt(0);
+        tab.setText("Bio");
+        tab = tabLayout.getTabAt(1);
+        tab.setText("Music");
 
 
-        //ImageView artistImage = findViewById(R.id.artists_image);
 
         ImageView artistImage =findViewById(R.id.artist_info_image);
 
@@ -97,22 +91,6 @@ public class ArtistInfo extends AppCompatActivity {
 
 
         */
-        /*
-        TextView artistNameText = findViewById(R.id.artist_name);
-
-        artistNameText.setText(artistName);
-
-        TextView artistBio = findViewById(R.id.artist_bio);
-
-        artistBio.setText("" +
-                "biokdk;adsjf;alejfpoiaejfefjaejfaepjfajefpjaepfjaefj" +
-                "paejifpoaejfoapjefoapjefoapjefpjaepofjapoejfaefjpaejfpaefjpaejf" +
-                "paesjifpioaejfpaejfpoajefpajefpjaepofjapoefjaopejfopajefp" +
-                "apoejfpoieajfieaopjpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaajejejep" +
-                "ejfjaejppppppppppppppppppp");
-
-                */
-
 
     }
 

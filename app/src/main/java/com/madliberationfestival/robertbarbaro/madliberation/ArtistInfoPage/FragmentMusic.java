@@ -19,13 +19,6 @@ import java.util.List;
 
 public class FragmentMusic extends Fragment {
 
-    View view;
-    private ListView musicList;
-
-
-    ArrayList<String> platforms;
-    ArrayList<String> links;
-
     public FragmentMusic() {
 
     }
@@ -33,37 +26,21 @@ public class FragmentMusic extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.music_fragment,container,false);
 
+        View view = inflater.inflate(R.layout.music_fragment,container,false);
+
+        // Get artist name from bundle passed by ArtistInfo
         Bundle bundle = getArguments();
-
         String artistName = bundle.getString("ARTIST_NAME");
 
+        // Get artist's music from database
         DataBaseHelper db = new DataBaseHelper(getContext());
         List<ArtistMusic> artistMusic = db.getArtistMusic(artistName);
-        System.out.println("SIZE OF ARTIST LIST IS :::" + artistMusic.size());
 
-
-/*
-        platforms = new ArrayList<>();
-        links = new ArrayList<>();
-        platforms.add("Spotify");
-        platforms.add("Sound Cloud");
-        platforms.add("Youtube");
-        links.add("https://open.spotify.com/artist/4kANxfLenUobb7t5fHSrgA");
-        links.add("https://soundcloud.com/moor-goddess");
-        links.add("https://www.youtube.com/watch?v=asYtTRfkbn8");
-
-*/
-
-
-        musicList = view.findViewById(R.id.music_list);
-
+        // Display artist's music in ListView
+        ListView musicList = view.findViewById(R.id.music_list);
         MusicAdapter adapter = new MusicAdapter(getActivity(), artistMusic);
         musicList.setAdapter(adapter);
-       // ArrayAdapter<String> adapter =
-        //        new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, platforms);
-        //musicList.setAdapter(adapter);
 
         return view;
     }

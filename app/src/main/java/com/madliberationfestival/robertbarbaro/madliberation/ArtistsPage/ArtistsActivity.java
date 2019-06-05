@@ -30,31 +30,24 @@ public class ArtistsActivity extends AppCompatActivity {
         setTitle("Artists");
 
         Toolbar toolbar = findViewById(R.id.app_bar);
-        toolbar.setTitleTextColor(0xFFFFFFFF);
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);  // Adds up navigation arrow to tool bar
+        if(getSupportActionBar() != null) {  // This should never occur; but just in case
 
-       // final String[] artists = getArtists();
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);  // Adds up navigation arrow to tool bar
+        }
 
-        //ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, artists);
+        ListView artistsListView = findViewById(R.id.artists);  // Get ListView which holds all the artists
 
-        ListView artistsListView = findViewById(R.id.artists);
-
-        DataBaseHelper db = new DataBaseHelper(this);
+        DataBaseHelper db = new DataBaseHelper(this);  // Call database to retrieve artist data
         final List<Artist> artistsList = db.getArtists();
 
-
-
+        // Set adapter to populate the artist data
         ArtistsListAdapter adapter = new ArtistsListAdapter(this, artistsList);
         artistsListView.setAdapter(adapter);
 
-
-
-
-        //artistsListView.setAdapter(adapter);
-
-
+        // When artist is clicked it will start the ArtistInfo Activity, displaying information
+        // for that specific artist
         artistsListView.setOnItemClickListener(
 
                 new AdapterView.OnItemClickListener() {
@@ -62,52 +55,13 @@ public class ArtistsActivity extends AppCompatActivity {
 
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Toast.makeText(getApplication(),
-                                "Position clicked " + position, Toast.LENGTH_LONG).show();
 
+                        // SHOULD I USE BASECONTEXT() ????!?!?!???
                         Intent intent = new Intent(getBaseContext(), ArtistInfo.class);
                         intent.putExtra("ARTIST_NAME", artistsList.get(position).getArtistName());
                         startActivity(intent);
                     }
                 }
-
-
-
         );
     }
-/*
-    public String[] getArtists() {
-
-        String[] artists = new String[42];
-
-        BufferedReader reader = null;
-        try {
-            reader = new BufferedReader(
-                    new InputStreamReader(getAssets().open("ArtistList.txt"), "UTF-8"));
-
-            String line;
-            int i = 0;
-
-            while ((line = reader.readLine()) != null) {
-
-                artists[i] = line;
-
-                i++;
-            }
-        } catch (IOException e) {
-            e.getMessage();
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    e.getMessage();
-                }
-            }
-        }
-
-        return artists;
-    }
-*/
-
 }

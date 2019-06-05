@@ -18,9 +18,9 @@ import java.util.List;
 
 public class ArtistsListAdapter extends BaseAdapter {
 
-    List<Artist> artistsList;
+    private List<Artist> artistsList;  // Holds the list of Artists
 
-    Activity activity;
+    private Activity activity;  // Holds calling Activity
 
     public ArtistsListAdapter(Activity activity, List<Artist> artistsList) {
 
@@ -48,17 +48,20 @@ public class ArtistsListAdapter extends BaseAdapter {
 
         convertView = activity.getLayoutInflater().inflate(R.layout.artist_list_item, null);
 
+        // Set the artist name in TextView
         TextView artistName = convertView.findViewById(R.id.artist_names);
+        artistName.setText(artistsList.get(position).getArtistName());
 
-       // ImageView artistImage = convertView.findViewById(R.id.artists_image);
 
+        // Get appropriate artist image and display it in ImageView
         try {
 
             // SHOULD I USE CONTEXT INSTEAD OF ACTIVITY?????????
+            // Retrieve the artist's image by name
             InputStream is = activity.getAssets().open(artistsList.get(position).getImage());
-
             Bitmap bm =  BitmapFactory.decodeStream(is);
 
+            // Set the image in the ImageView
             ImageView imageView = convertView.findViewById(R.id.artists_image);
             imageView.setImageBitmap(bm);
 
@@ -66,8 +69,6 @@ public class ArtistsListAdapter extends BaseAdapter {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        artistName.setText(artistsList.get(position).getArtistName());
 
         return convertView;
     }

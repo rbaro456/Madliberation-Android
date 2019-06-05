@@ -4,7 +4,9 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/ToolBarBlack"
-    app:theme="@style/UpNavigationTheme">
+    app:theme="@style/UpNavigationTheme"
+    app:titleTextColor="@color/white"
+    app:title="Schedule">
 
     <Spinner
         android:id="@+id/day_spinner"

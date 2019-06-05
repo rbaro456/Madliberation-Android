@@ -19,8 +19,14 @@ import com.madliberationfestival.robertbarbaro.madliberation.R;
 public class SocialAdapter extends BaseAdapter {
 
 
-    private Context context;
+    private Context context; // Holds the Context
+
+    //***NOTE: TURN THIS INTO AN OBJECT?!???!?!?!?!?!?
+
+    // Holds the name of social media platforms
     private String[] socialArr = {"Facebook", "Instagram", "Twitter"};
+
+    // Holds the links to each social media platform
     private String[] links = {"https://www.facebook.com/MADLIBERATION/",
     "https://www.instagram.com/madlibfest/?hl=en",
     "https://twitter.com/madlibfest?lang=en"};
@@ -48,11 +54,13 @@ public class SocialAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         convertView = LayoutInflater.from(context).inflate(R.layout.social_item, parent, false);
-        String social = socialArr[position];
 
-        String link = "<a href=\""+links[position]+"\">"+social+"</a>";
+        String social = socialArr[position]; // Get appropriate social media name
+        String link = "<a href=\""+links[position]+"\">"+social+"</a>";  // Get appropriate social media link
+                                                                        // and convert it into a link
 
-        Spannable s = (Spannable) Html.fromHtml(link);  // Removes underline from links
+        // Removes underline from link
+        Spannable s = (Spannable) Html.fromHtml(link);
         for (URLSpan u: s.getSpans(0, s.length(), URLSpan.class)) {
             s.setSpan(new UnderlineSpan() {
                 public void updateDrawState(TextPaint tp) {
@@ -61,9 +69,8 @@ public class SocialAdapter extends BaseAdapter {
             }, s.getSpanStart(u), s.getSpanEnd(u), 0);
         }
 
-
+        // Set the TextView to be the clickable link
         TextView textView = convertView.findViewById(R.id.social_text);
-
         textView.setText(s);
         textView.setMovementMethod(LinkMovementMethod.getInstance());  // Allows links to be clickable
 

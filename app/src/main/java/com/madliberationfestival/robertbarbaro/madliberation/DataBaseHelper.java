@@ -140,12 +140,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         String myPath = DB_PATH + DB_NAME;
         myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
 
-        if(myDataBase == null) {
-            System.out.println("DATABASE IS NULL MOTHA FUKA lkj;asdlkjdlk;sa;lkjasdflk;lj;kasdfl;kjasl;kdf;lkasdjkf;asdjkfl;");
-        } else {
-            System.out.println("DATABASR IS FOUND kdkd;ladjfa;lfkj;lasdkjf;lasdkjf");
-        }
-
     }
 
     @Override

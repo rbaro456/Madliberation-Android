@@ -1,5 +1,6 @@
 package com.madliberationfestival.robertbarbaro.madliberation;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.SQLException;
 import android.graphics.Bitmap;
@@ -19,17 +20,14 @@ import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
 
-    private DataBaseHelper db;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        DataBaseHelper db = new DataBaseHelper(this);
 
-
-        db = new DataBaseHelper(this);
-
+        // Try to create database if it does not exist
         try {
 
             db.createDataBase();
@@ -70,38 +68,36 @@ public class MainActivity extends AppCompatActivity {
 
         // db.getInstance(getBaseContext());
 
-        Button artistsButton = findViewById(R.id.artists_button);
 
+        Button artistsButton = findViewById(R.id.artists_button);
         artistsButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(getBaseContext(), ArtistsActivity.class));
+                startActivity(new Intent(MainActivity.this, ArtistsActivity.class));
 
             }
         });
 
         Button scheduleButton = findViewById(R.id.schedule_button);
-
         scheduleButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(getBaseContext(), Schedule.class));
+                startActivity(new Intent(MainActivity.this, Schedule.class));
 
             }
         });
 
         Button socialButton = findViewById(R.id.social_button);
-
         socialButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(getBaseContext(), Social.class));
+                startActivity(new Intent(MainActivity.this, Social.class));
 
             }
         });

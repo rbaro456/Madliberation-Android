@@ -30,21 +30,18 @@ import java.util.List;
 
 public class Schedule extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private List<ArtistSchedule> schedule;  // Array of each artist's scheduled set time
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
 
-        setTitle("Schedule");
-
         Toolbar toolbar = findViewById(R.id.schedule_bar);
-        toolbar.setTitleTextColor(0xFFFFFFFF);
-
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);  // Adds up navigation arrow to tool bar
+        if(getSupportActionBar() != null) {  // This should never occur; but just in case
 
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);  // Adds up navigation arrow to tool bar
+        }
 
         // Creates spinner to choose which day to display schedule for
         Spinner daySpinner = findViewById(R.id.day_spinner);
@@ -56,17 +53,15 @@ public class Schedule extends AppCompatActivity implements AdapterView.OnItemSel
         daySpinner.getBackground().setColorFilter(getResources().getColor(R.color.colorPrimary),
                 PorterDuff.Mode.SRC_ATOP);
 
-        ListView scheduleListView = findViewById(R.id.schedule);
 
+
+        ListView scheduleListView = findViewById(R.id.schedule);
         scheduleListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
-                Toast.makeText(getApplication(),
-                        "Position clicked " + position, Toast.LENGTH_LONG).show();
 
                 ArtistSchedule entry = (ArtistSchedule) parent.getItemAtPosition(position);
-
 
                 Intent intent = new Intent(getBaseContext(), ArtistInfo.class);
                 intent.putExtra("ARTIST_NAME", entry.getArtistName());
@@ -84,7 +79,7 @@ public class Schedule extends AppCompatActivity implements AdapterView.OnItemSel
 
         DataBaseHelper db = new DataBaseHelper(this);  // create database instance
 
-        schedule = db.getScheduleByDay(daySchedule);  // get schedule by day; 1 for day one and 2 for day two
+        List<ArtistSchedule> schedule = db.getScheduleByDay(daySchedule);  // get schedule by day; 1 for day one and 2 for day two
 
         schedule = sortAMandPM(schedule);  // sorts the schedule so the PM artists come before the AM artists
 

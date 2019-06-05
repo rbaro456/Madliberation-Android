@@ -11,10 +11,6 @@ import com.madliberationfestival.robertbarbaro.madliberation.R;
 
 public class Social extends AppCompatActivity {
 
-    private ListView socialList;
-
-    String[] socialArr = {"Insta", "Facey", "Twity"};
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,15 +19,14 @@ public class Social extends AppCompatActivity {
         setTitle("Social");
 
         Toolbar toolbar = findViewById(R.id.app_bar);
-        toolbar.setTitleTextColor(0xFFFFFFFF);
-
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);  // Adds up navigation arrow to tool bar
+        if(getSupportActionBar() != null) {  // This should never occur; but just in case
 
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);  // Adds up navigation arrow to tool bar
+        }
 
-        socialList = findViewById(R.id.social_list);
-        //ArrayAdapter adapter = new ArrayAdapter<String>(this,R.layout.activity_listview,socialArr);
-
+        // Populate ListView with social media links
+        ListView socialList = findViewById(R.id.social_list);
         SocialAdapter socialAdapter = new SocialAdapter(this);
         socialList.setAdapter(socialAdapter);
 

@@ -24,8 +24,6 @@ import java.util.List;
 
 public class MusicAdapter extends BaseAdapter {
 
-    private ArrayList<String> platforms;
-    private ArrayList<String> links;
     private List<ArtistMusic> artistMusic;
 
     private Activity activity;
@@ -34,11 +32,7 @@ public class MusicAdapter extends BaseAdapter {
 
         this.activity = activity;
         this.artistMusic = artistMusic;
-        /*
-        this.platforms = platforms;
-        this.activity = activity;
-        this.links = links;
-        */
+
     }
 
     @Override

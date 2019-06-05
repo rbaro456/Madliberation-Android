@@ -15,9 +15,6 @@ import com.madliberationfestival.robertbarbaro.madliberation.R;
 
 public class FragmentBio extends Fragment {
 
-    View view;
-    TextView bioText;
-
     public FragmentBio() {
 
     }
@@ -27,17 +24,18 @@ public class FragmentBio extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.bio_fragment,container,false);
+        View view = inflater.inflate(R.layout.bio_fragment,container,false);
 
+        // Get artist name from bundle passed by ArtistInfo
         Bundle bundle = getArguments();
-
         String artistName = bundle.getString("ARTIST_NAME");
 
+        // Get artist's bio from database
         DataBaseHelper db = new DataBaseHelper(getContext());
         String artistBio = db.getArtistBio(artistName);
 
-
-        bioText = view.findViewById(R.id.biotext);
+        // Set artist's bio in the bio text fragment
+        TextView bioText = view.findViewById(R.id.biotext);
         bioText.setText(artistBio);
         bioText.setMovementMethod(new ScrollingMovementMethod());
 
