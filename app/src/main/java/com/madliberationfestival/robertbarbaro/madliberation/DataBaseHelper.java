@@ -231,7 +231,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         openDataBase();
 
-        Cursor cursor = myDataBase.rawQuery("Select * from artist",null);
+        Cursor cursor = myDataBase.rawQuery("Select * from artist ORDER BY name COLLATE NOCASE ASC"
+                ,null);
 
         List<Artist> artistsList = new ArrayList<>();
 

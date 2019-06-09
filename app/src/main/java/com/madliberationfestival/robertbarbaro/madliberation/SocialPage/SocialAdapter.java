@@ -2,6 +2,9 @@ package com.madliberationfestival.robertbarbaro.madliberation.SocialPage;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.TextPaint;
@@ -12,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.madliberationfestival.robertbarbaro.madliberation.R;
@@ -30,6 +34,8 @@ public class SocialAdapter extends BaseAdapter {
     private String[] links = {"https://www.facebook.com/MADLIBERATION/",
     "https://www.instagram.com/madlibfest/?hl=en",
     "https://twitter.com/madlibfest?lang=en"};
+
+    private int[] drawableImages = {R.drawable.facebook, R.drawable.instagram, R.drawable.twitter};
 
     public SocialAdapter(Context context){
         this.context = context;
@@ -54,6 +60,11 @@ public class SocialAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         convertView = LayoutInflater.from(context).inflate(R.layout.social_item, parent, false);
+
+        Bitmap myLogo = BitmapFactory.decodeResource(context.getResources(), drawableImages[position]);
+
+        ImageView socialImage = convertView.findViewById(R.id.social_image);
+        socialImage.setImageBitmap(myLogo);
 
         String social = socialArr[position]; // Get appropriate social media name
         String link = "<a href=\""+links[position]+"\">"+social+"</a>";  // Get appropriate social media link

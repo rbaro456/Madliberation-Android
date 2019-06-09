@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+        //*****IS THIS NECESSARY!?!?!?!?!?!?!?!?
         try {
 
             db.openDataBase();
