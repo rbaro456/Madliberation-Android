@@ -1,4 +1,4 @@
-package com.madliberationfestival.robertbarbaro.madliberation.ArtistsPage;
+package com.madliberationfestival.robertbarbaro.madliberation.artists;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
@@ -9,7 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.madliberationfestival.robertbarbaro.madliberation.Model.Artist;
+import com.madliberationfestival.robertbarbaro.madliberation.model.Artist;
 import com.madliberationfestival.robertbarbaro.madliberation.R;
 
 import java.io.IOException;
@@ -56,7 +56,6 @@ public class ArtistsListAdapter extends BaseAdapter {
         // Get appropriate artist image and display it in ImageView
         try {
 
-            // SHOULD I USE CONTEXT INSTEAD OF ACTIVITY?????????
             // Retrieve the artist's image by name
             InputStream is = activity.getAssets().open(artistsList.get(position).getImage());
             Bitmap bm =  BitmapFactory.decodeStream(is);

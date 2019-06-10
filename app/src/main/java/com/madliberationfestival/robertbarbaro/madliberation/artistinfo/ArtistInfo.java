@@ -1,21 +1,16 @@
-package com.madliberationfestival.robertbarbaro.madliberation.ArtistInfoPage;
+package com.madliberationfestival.robertbarbaro.madliberation.artistinfo;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.madliberationfestival.robertbarbaro.madliberation.DataBaseHelper;
-import com.madliberationfestival.robertbarbaro.madliberation.Model.Artist;
+import com.madliberationfestival.robertbarbaro.madliberation.model.Artist;
 import com.madliberationfestival.robertbarbaro.madliberation.R;
-
-import java.io.IOException;
-import java.io.InputStream;
 
 public class ArtistInfo extends AppCompatActivity {
 
@@ -26,7 +21,10 @@ public class ArtistInfo extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);  // Adds up navigation arrow to tool bar
+        if(getSupportActionBar() != null) {  // This should never occur; but just in case
+
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);  // Adds up navigation arrow to tool bar
+        }
 
 
         String artistName = getIntent().getStringExtra("ARTIST_NAME");  // Get artist name that was clicked
@@ -92,6 +90,17 @@ public class ArtistInfo extends AppCompatActivity {
 
         */
 
+    }
+
+    // Overrides the up navigation to work like the android back button on phone
+    // This is used to go back to the calling activity
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

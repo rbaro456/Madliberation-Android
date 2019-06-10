@@ -1,4 +1,4 @@
-package com.madliberationfestival.robertbarbaro.madliberation.Schedule;
+package com.madliberationfestival.robertbarbaro.madliberation.schedule;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
@@ -8,10 +8,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.madliberationfestival.robertbarbaro.madliberation.DataBaseHelper;
-import com.madliberationfestival.robertbarbaro.madliberation.Model.ArtistSchedule;
+import com.madliberationfestival.robertbarbaro.madliberation.model.ArtistSchedule;
 import com.madliberationfestival.robertbarbaro.madliberation.R;
 
 import java.io.IOException;

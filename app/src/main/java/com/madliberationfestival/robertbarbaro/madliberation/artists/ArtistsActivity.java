@@ -1,4 +1,4 @@
-package com.madliberationfestival.robertbarbaro.madliberation.ArtistsPage;
+package com.madliberationfestival.robertbarbaro.madliberation.artists;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,16 +7,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.madliberationfestival.robertbarbaro.madliberation.ArtistInfoPage.ArtistInfo;
+import com.madliberationfestival.robertbarbaro.madliberation.artistinfo.ArtistInfo;
 import com.madliberationfestival.robertbarbaro.madliberation.DataBaseHelper;
-import com.madliberationfestival.robertbarbaro.madliberation.Model.Artist;
+import com.madliberationfestival.robertbarbaro.madliberation.model.Artist;
 import com.madliberationfestival.robertbarbaro.madliberation.R;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.List;
 
 
@@ -52,12 +48,10 @@ public class ArtistsActivity extends AppCompatActivity {
 
                 new AdapterView.OnItemClickListener() {
 
-
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                        // SHOULD I USE BASECONTEXT() ????!?!?!???
-                        Intent intent = new Intent(getBaseContext(), ArtistInfo.class);
+                        Intent intent = new Intent(ArtistsActivity.this, ArtistInfo.class);
                         intent.putExtra("ARTIST_NAME", artistsList.get(position).getArtistName());
                         startActivity(intent);
                     }

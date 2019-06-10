@@ -1,4 +1,4 @@
-package com.madliberationfestival.robertbarbaro.madliberation.Model;
+package com.madliberationfestival.robertbarbaro.madliberation.model;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

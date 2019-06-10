@@ -1,9 +1,8 @@
-package com.madliberationfestival.robertbarbaro.madliberation.SocialPage;
+package com.madliberationfestival.robertbarbaro.madliberation.social;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.madliberationfestival.robertbarbaro.madliberation.R;

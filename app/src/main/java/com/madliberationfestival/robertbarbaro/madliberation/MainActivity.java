@@ -1,22 +1,17 @@
 package com.madliberationfestival.robertbarbaro.madliberation;
 
-import android.content.Context;
 import android.content.Intent;
 import android.database.SQLException;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 
-import com.madliberationfestival.robertbarbaro.madliberation.ArtistsPage.ArtistsActivity;
-import com.madliberationfestival.robertbarbaro.madliberation.Schedule.Schedule;
-import com.madliberationfestival.robertbarbaro.madliberation.SocialPage.Social;
+import com.madliberationfestival.robertbarbaro.madliberation.artists.ArtistsActivity;
+import com.madliberationfestival.robertbarbaro.madliberation.schedule.Schedule;
+import com.madliberationfestival.robertbarbaro.madliberation.social.Social;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
 

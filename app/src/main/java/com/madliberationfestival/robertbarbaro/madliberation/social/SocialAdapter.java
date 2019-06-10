@@ -1,10 +1,8 @@
-package com.madliberationfestival.robertbarbaro.madliberation.SocialPage;
+package com.madliberationfestival.robertbarbaro.madliberation.social;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.TextPaint;
@@ -25,17 +23,16 @@ public class SocialAdapter extends BaseAdapter {
 
     private Context context; // Holds the Context
 
-    //***NOTE: TURN THIS INTO AN OBJECT?!???!?!?!?!?!?
-
     // Holds the name of social media platforms
-    private String[] socialArr = {"Facebook", "Instagram", "Twitter"};
+    private final String[] socialArr = {"Facebook", "Instagram", "Twitter"};
 
     // Holds the links to each social media platform
-    private String[] links = {"https://www.facebook.com/MADLIBERATION/",
+    private final String[] links = {"https://www.facebook.com/MADLIBERATION/",
     "https://www.instagram.com/madlibfest/?hl=en",
     "https://twitter.com/madlibfest?lang=en"};
 
-    private int[] drawableImages = {R.drawable.facebook, R.drawable.instagram, R.drawable.twitter};
+    // Holds the icon for each social media platform
+    private final int[] drawableImages = {R.drawable.facebook, R.drawable.instagram, R.drawable.twitter};
 
     public SocialAdapter(Context context){
         this.context = context;

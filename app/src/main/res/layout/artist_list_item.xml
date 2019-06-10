@@ -12,6 +12,7 @@
         android:paddingLeft="2dp"
         android:paddingStart="2dp"
         android:layout_gravity="center"
+        android:scaleType="fitXY"
         android:contentDescription="@string/artist_image" />
 
     <TextView

@@ -1,4 +1,4 @@
-package com.madliberationfestival.robertbarbaro.madliberation.Schedule;
+package com.madliberationfestival.robertbarbaro.madliberation.schedule;
 
 import android.content.Intent;
 import android.graphics.PorterDuff;
@@ -10,12 +10,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 
-import com.madliberationfestival.robertbarbaro.madliberation.ArtistInfoPage.ArtistInfo;
+import com.madliberationfestival.robertbarbaro.madliberation.artistinfo.ArtistInfo;
 import com.madliberationfestival.robertbarbaro.madliberation.DataBaseHelper;
-import com.madliberationfestival.robertbarbaro.madliberation.Model.ArtistSchedule;
+import com.madliberationfestival.robertbarbaro.madliberation.model.ArtistSchedule;
 import com.madliberationfestival.robertbarbaro.madliberation.R;
 
 import java.io.BufferedReader;
@@ -193,45 +192,5 @@ public class Schedule extends AppCompatActivity implements AdapterView.OnItemSel
 
     }
 
-    private List<ArtistSchedule> readSchedule() {
 
-        List<ArtistSchedule> artistSchedules = new ArrayList<>();
-
-        // Read the raw csv file
-        InputStream is = getResources().openRawResource(R.raw.schedule);
-
-        // Reads text from character-input stream, buffering characters for efficient reading
-        BufferedReader br = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
-
-        // Initialization
-        String line = "";
-
-        // Handling exceptions
-        try {
-
-            br.readLine(); // Used to omit first line of CSV
-            // since it only contains headers
-
-            // If buffer is not empty
-            while ((line = br.readLine()) != null) {
-                // use comma as separator columns of CSV
-                String[] cols = line.split(",");
-
-
-                // ArtistSchedule artistSchedule = new ArtistSchedule(cols[0], cols[1],
-                //         cols[2], cols[3]);
-
-                //   artistSchedules.add(artistSchedule);
-
-            }
-        } catch (IOException e) {
-            // Prints throwable details
-            e.printStackTrace();
-        }
-
-        artistSchedules = sortAMandPM(artistSchedules);
-
-        return artistSchedules;
-
-    }
 }

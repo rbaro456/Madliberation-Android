@@ -1,4 +1,4 @@
-package com.madliberationfestival.robertbarbaro.madliberation.ArtistInfoPage;
+package com.madliberationfestival.robertbarbaro.madliberation.artistinfo;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

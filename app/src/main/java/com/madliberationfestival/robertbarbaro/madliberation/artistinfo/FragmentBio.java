@@ -1,4 +1,4 @@
-package com.madliberationfestival.robertbarbaro.madliberation.ArtistInfoPage;
+package com.madliberationfestival.robertbarbaro.madliberation.artistinfo;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

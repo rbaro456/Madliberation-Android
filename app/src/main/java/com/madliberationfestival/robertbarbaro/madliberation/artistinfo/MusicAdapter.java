@@ -1,8 +1,6 @@
-package com.madliberationfestival.robertbarbaro.madliberation.ArtistInfoPage;
+package com.madliberationfestival.robertbarbaro.madliberation.artistinfo;
 
 import android.app.Activity;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.TextPaint;
@@ -14,12 +12,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.madliberationfestival.robertbarbaro.madliberation.Model.ArtistMusic;
+import com.madliberationfestival.robertbarbaro.madliberation.model.ArtistMusic;
 import com.madliberationfestival.robertbarbaro.madliberation.R;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class MusicAdapter extends BaseAdapter {

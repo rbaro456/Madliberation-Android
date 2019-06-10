@@ -6,11 +6,10 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Toast;
 
-import com.madliberationfestival.robertbarbaro.madliberation.Model.Artist;
-import com.madliberationfestival.robertbarbaro.madliberation.Model.ArtistMusic;
-import com.madliberationfestival.robertbarbaro.madliberation.Model.ArtistSchedule;
+import com.madliberationfestival.robertbarbaro.madliberation.model.Artist;
+import com.madliberationfestival.robertbarbaro.madliberation.model.ArtistMusic;
+import com.madliberationfestival.robertbarbaro.madliberation.model.ArtistSchedule;
 
 import java.io.File;
 import java.io.FileOutputStream;
