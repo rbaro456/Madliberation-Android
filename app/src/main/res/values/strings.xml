@@ -7,7 +7,7 @@
     <string name="schedule">Schedule</string>
     <string name="social">Social</string>
     <string-array name="days">
-        <item>Friday</item>
-        <item>Saturday</item>
+        <item><font fgcolor="@color/white">Friday</font></item>
+        <item><font fgcolor="@color/white">Saturday</font></item>
     </string-array>
 </resources>

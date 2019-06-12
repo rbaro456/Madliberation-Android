@@ -69,7 +69,7 @@ public class ScheduleListAdapter extends BaseAdapter {
 
         if(getItemViewType(position) == 0) {
             ArtistSchedule artistInfo = (ArtistSchedule) artistSchedules.get(position);
-            convertView = activity.getLayoutInflater().inflate(R.layout.artist_schedule_item, null);
+            convertView = activity.getLayoutInflater().inflate(R.layout.test, null);
 
             TextView artistName = convertView.findViewById(R.id.artist_names);
             artistName.setText(artistInfo.getArtistName());

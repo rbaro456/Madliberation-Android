@@ -45,12 +45,12 @@ public class Schedule extends AppCompatActivity implements AdapterView.OnItemSel
         // Creates spinner to choose which day to display schedule for
         Spinner daySpinner = findViewById(R.id.day_spinner);
         ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this,
-                R.array.days, R.layout.spin_style);
+                R.array.days, android.R.layout.simple_spinner_item);
         spinnerAdapter.setDropDownViewResource(R.layout.spin_item);
         daySpinner.setAdapter(spinnerAdapter);
         daySpinner.setOnItemSelectedListener(this);
-        daySpinner.getBackground().setColorFilter(getResources().getColor(R.color.colorPrimary),
-                PorterDuff.Mode.SRC_ATOP);
+        //daySpinner.getBackground().setColorFilter(getResources().getColor(R.color.design_default_color_primary),
+        //        PorterDuff.Mode.SRC_ATOP);
 
 
 

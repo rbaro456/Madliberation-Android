@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="#c0bfc1">
 
     <TextView
         android:id="@+id/biotext"
@@ -11,6 +12,10 @@
         android:text="Moor Mother is crazy ass fuck. She will rip your head off with crazy sounds and music to the point where you think you are dead on the floor and dying form a heart attack. Jesus cannot even save your soul from what she will do to you dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddhhhhhdddddddddddddddddddddddddddddddddddddddddddddddddd"
         android:textSize="20sp"
         android:scrollbars = "vertical"
+        android:textColor="#0c0c0c"
+
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
 
         />
 
