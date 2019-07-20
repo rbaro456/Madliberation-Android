@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout = "@layout/app_bar"
+        android:id = "@+id/app_bar">
+    </include>
+
+    <TextView
+        android:id="@+id/motto_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="4dp"
+        android:layout_marginLeft="4dp"
+        android:textSize="28sp"
+        android:text="Mad Liberation Festival aims to bridge the gap between the collected communities of outsiders and fringe artists from all walks of life and all styles of expression. We pride ourselves in creating an inclusive meeting place and platform that celebrates the richness of what makes these scenes beautiful and diverse, while encouraging all involved to learn from each other's differences and similarities, and to build their individual visions in a shared space designed to inspire the spirit and mind."/>
+</LinearLayout>

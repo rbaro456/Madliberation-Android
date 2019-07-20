@@ -10,7 +10,6 @@ import java.util.List;
 public class ViewPagerAdapter extends FragmentPagerAdapter {
 
     private final List<Fragment> fragments = new ArrayList<>();
-    private final List<String> titles = new ArrayList<>();
 
     public ViewPagerAdapter(FragmentManager fm) {
 
@@ -27,10 +26,9 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         return fragments.size();
     }
 
-    public void AddFragment(Fragment f, String title) {
+    public void AddFragment(Fragment f) {
 
         fragments.add(f);
-        titles.add(title);
     }
 
 

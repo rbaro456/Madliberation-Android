@@ -57,6 +57,7 @@ public class ArtistsListAdapter extends BaseAdapter {
         try {
 
             // Retrieve the artist's image by name
+            System.out.println("ARTISTS IMAGEEE!!! ::: " + artistsList.get(position).getImage());
             InputStream is = activity.getAssets().open(artistsList.get(position).getImage());
             Bitmap bm =  BitmapFactory.decodeStream(is);
 

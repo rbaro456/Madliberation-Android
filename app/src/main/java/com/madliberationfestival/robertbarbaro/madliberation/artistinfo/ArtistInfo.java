@@ -1,5 +1,7 @@
 package com.madliberationfestival.robertbarbaro.madliberation.artistinfo;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -7,10 +9,14 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.madliberationfestival.robertbarbaro.madliberation.DataBaseHelper;
 import com.madliberationfestival.robertbarbaro.madliberation.model.Artist;
 import com.madliberationfestival.robertbarbaro.madliberation.R;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class ArtistInfo extends AppCompatActivity {
 
@@ -44,7 +50,7 @@ public class ArtistInfo extends AppCompatActivity {
         bundle.putString("ARTIST_NAME", artistName);
 
         // Create fragment instance and pass artist name in bundle
-        // Need to pass name so the bio and music of that specific artist is displayed
+        // Need to pass name so the bio and music of that specific artist can be queried from database
         FragmentMusic musicFrag = new FragmentMusic();
         musicFrag.setArguments(bundle);
 
@@ -52,8 +58,8 @@ public class ArtistInfo extends AppCompatActivity {
         bioFrag.setArguments(bundle);
 
         // Add fragment to the adapter
-        adapter.AddFragment(bioFrag, "Bio");
-        adapter.AddFragment(musicFrag, "Music");
+        adapter.AddFragment(bioFrag);
+        adapter.AddFragment(musicFrag);
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
@@ -66,10 +72,10 @@ public class ArtistInfo extends AppCompatActivity {
 
 
 
-        ImageView artistImage =findViewById(R.id.artist_info_image);
+//        ImageView artistImage =findViewById(R.id.artist_info_image);
 
 
-        /*
+
         try {
             InputStream is = getAssets().open(artist.getImage());
 
@@ -88,7 +94,7 @@ public class ArtistInfo extends AppCompatActivity {
         }
 
 
-        */
+
 
     }
 

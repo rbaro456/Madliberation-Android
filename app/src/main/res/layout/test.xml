@@ -17,8 +17,7 @@
         android:paddingLeft="2dp"
         android:paddingEnd="6dp"
         android:paddingRight="6dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/moor" />
+        android:scaleType="fitXY" />
 
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

@@ -5,10 +5,10 @@
 
     <ImageView
         android:id="@+id/social_image"
-        android:layout_width="40dp"
-        android:layout_height="33dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:layout_gravity="center"
-        android:paddingStart="2dp"
+        android:paddingStart="7dp"
         android:paddingLeft="2dp"
         android:paddingEnd="6dp"
         android:paddingRight="6dp"

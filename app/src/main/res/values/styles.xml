@@ -25,11 +25,13 @@
     </style>
     
     <style name="MainButton">
+        <item name="android:layout_gravity">center</item>
         <item name="android:textSize">25sp</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:background">@drawable/button_border</item>
         <item name="android:layout_width">334dp</item>
         <item name="android:layout_height">51dp</item>
+        <item name="android:layout_marginBottom">40dp</item>
     </style>
 
 </resources>
