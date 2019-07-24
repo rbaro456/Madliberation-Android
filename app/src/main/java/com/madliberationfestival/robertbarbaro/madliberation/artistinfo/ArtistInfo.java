@@ -73,25 +73,11 @@ public class ArtistInfo extends AppCompatActivity {
 
 
 //        ImageView artistImage =findViewById(R.id.artist_info_image);
-
-
-
-        try {
-            InputStream is = getAssets().open(artist.getImage());
-
-            Bitmap bm =  BitmapFactory.decodeStream(is);
-
-            ImageView imageView =findViewById(R.id.artist_info_image);
-            imageView.setImageBitmap(bm);
-
-            Toast.makeText(this, "The width is " + imageView.getWidth() + "\n The height is "
-                            + imageView.getHeight(),
-                    Toast.LENGTH_LONG).show();
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String imag = artist.getImage();
+        imag = imag.substring(0,imag.indexOf('.'));
+        ImageView imageView = findViewById(R.id.artist_info_image);
+        imageView.setImageResource(this.getResources().getIdentifier(imag,
+                "drawable", this.getPackageName()));
 
 
 

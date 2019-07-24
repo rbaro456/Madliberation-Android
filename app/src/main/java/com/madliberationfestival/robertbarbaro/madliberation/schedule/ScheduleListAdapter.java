@@ -86,18 +86,11 @@ public class ScheduleListAdapter extends BaseAdapter {
             String artistImage = db.getArtistImage(artistInfo.getArtistName());
 
 
-            try {
-                InputStream is = activity.getAssets().open(artistImage);
+            artistImage = artistImage.substring(0,artistImage.indexOf('.'));
 
-                Bitmap bm =  BitmapFactory.decodeStream(is);
-
-                ImageView imageView = convertView.findViewById(R.id.artists_image);
-                imageView.setImageBitmap(bm);
-
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            ImageView imageView = convertView.findViewById(R.id.artists_image);
+            imageView.setImageResource(activity.getResources().getIdentifier(artistImage,
+                    "drawable", activity.getPackageName()));
 
         } else {
 
