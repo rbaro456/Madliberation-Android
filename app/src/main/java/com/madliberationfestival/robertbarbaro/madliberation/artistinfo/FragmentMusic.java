@@ -1,13 +1,17 @@
 package com.madliberationfestival.robertbarbaro.madliberation.artistinfo;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.madliberationfestival.robertbarbaro.madliberation.DataBaseHelper;
 import com.madliberationfestival.robertbarbaro.madliberation.model.ArtistMusic;
@@ -39,6 +43,26 @@ public class FragmentMusic extends Fragment {
         ListView musicList = view.findViewById(R.id.music_list);
         MusicAdapter adapter = new MusicAdapter(getActivity(), artistMusic);
         musicList.setAdapter(adapter);
+
+        if(artistMusic.isEmpty()) {
+
+            LinearLayout root = view.findViewById(R.id.root);
+            root.removeView(musicList);
+
+            TextView musicText = new TextView(getContext());
+            musicText.setText("No Music");
+            musicText.setGravity(Gravity.CENTER);
+            musicText.setTextSize(20);
+            musicText.setTextColor(Color.parseColor("#0c0c0c"));
+            root.addView(musicText);
+
+        }
+
+
+
+
+
+
 
         return view;
     }

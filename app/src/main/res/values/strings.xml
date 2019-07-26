@@ -10,4 +10,5 @@
         <item><font fgcolor="@color/white">Friday</font></item>
         <item><font fgcolor="@color/white">Saturday</font></item>
     </string-array>
+    <string name = "motto"> <b>"Mad Liberation Festival aims to bridge the gap between the collected communities of outsiders and fringe artists from all walks of life and all styles ofexpression. We pride ourselves in creating an inclusive meeting place and platform thatcelebrates the richness of what makes these scenes beautiful and diverse, while encouragingall involved to learn from each other's differences and similarities, and to build theirindividual visions in a shared space designed to inspire the spirit and mind."</b></string>
 </resources>

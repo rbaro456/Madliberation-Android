@@ -9,7 +9,6 @@
         android:id="@+id/biotext"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Moor Mother is crazy ass fuck. She will rip your head off with crazy sounds and music to the point where you think you are dead on the floor and dying form a heart attack. Jesus cannot even save your soul from what she will do to you dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddhhhhhdddddddddddddddddddddddddddddddddddddddddddddddddd"
         android:textSize="20sp"
         android:scrollbars = "vertical"
         android:textColor="#0c0c0c"

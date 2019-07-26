@@ -3,7 +3,8 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:background="#c0bfc1">
+    android:background="#c0bfc1"
+    android:id="@+id/root">
 
     <ListView
         android:id="@+id/music_list"
