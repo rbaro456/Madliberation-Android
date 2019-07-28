@@ -37,36 +37,12 @@
 
         android:text="@string/schedule"
         />
-    <!---
-    <ImageView
-        android:id="@+id/imageTest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/artists_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appbarid"
-        tools:srcCompat="@tools:sample/avatars" />
-        -->
-
-    <Button
-        style="@style/MainButton"
-        android:id="@+id/social_button"
-
-        android:text="@string/social"
-         />
 
     <Button
         android:id="@+id/map_button"
         style="@style/MainButton"
 
-        android:text="Map"
+        android:text="@string/map"
          />
 
     <Button
@@ -74,7 +50,14 @@
         style="@style/MainButton"
 
 
-        android:text="Motto"
+        android:text="@string/vision"
          />
+
+    <Button
+        style="@style/MainButton"
+        android:id="@+id/social_button"
+
+        android:text="@string/social"
+        />
 
 </LinearLayout>

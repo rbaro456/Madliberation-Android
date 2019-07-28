@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <include layout = "@layout/app_bar"
+        android:id = "@+id/app_bar">
+    </include>
+
+    <ImageView
+        android:id="@+id/artist_info_image"
+        android:layout_width="0dp"
+        android:layout_height="221dp"
+        android:background="@color/ToolBarBlack"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/app_bar" />
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_layout_id"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:background="@color/ToolBarBlack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/artist_info_image"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="@color/MadlibRed"
+        app:tabMode="fixed"
+        app:tabTextColor="@color/MadlibRed" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tab_layout_id" />
+
+</android.support.constraint.ConstraintLayout>

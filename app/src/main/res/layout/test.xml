@@ -29,7 +29,7 @@
             android:id="@+id/artist_names"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="left"
+            android:gravity="start"
             android:text="Minty iv"
             android:textSize="16sp" />
 

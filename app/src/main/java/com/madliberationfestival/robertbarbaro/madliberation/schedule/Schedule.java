@@ -60,11 +60,19 @@ public class Schedule extends AppCompatActivity implements AdapterView.OnItemSel
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
 
-                ArtistSchedule entry = (ArtistSchedule) parent.getItemAtPosition(position);
+                try {
 
-                Intent intent = new Intent(getBaseContext(), ArtistInfo.class);
-                intent.putExtra("ARTIST_NAME", entry.getArtistName());
-                startActivity(intent);
+                    ArtistSchedule entry = (ArtistSchedule) parent.getItemAtPosition(position);
+
+                    Intent intent = new Intent(getBaseContext(), ArtistInfo.class);
+                    intent.putExtra("ARTIST_NAME", entry.getArtistName());
+                    startActivity(intent);
+
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+
+
             }
         });
 

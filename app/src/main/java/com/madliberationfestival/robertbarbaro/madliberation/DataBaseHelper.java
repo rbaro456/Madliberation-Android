@@ -30,7 +30,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     private static File DB_PATH;
 
-    private static String DB_NAME = "mad_liberation.db";
+    private static String DB_NAME = "mad_liberationV4.db";
 
     private SQLiteDatabase myDataBase;
 
